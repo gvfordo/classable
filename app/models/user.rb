@@ -9,6 +9,7 @@
 #  session_token   :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
+#  admin           :boolean
 #
 
 class User < ActiveRecord::Base
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
   
   validates :username, :email, :password_digest, :session_token, :presence => true
   validates :username, :email, :uniqueness => true
-  validate :ensure_session_token
+  before_validation :ensure_session_token
   
   def self.generate_session_token
     SecureRandom::urlsafe_base64(16)

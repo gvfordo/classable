@@ -1,4 +1,9 @@
 Tumblr::Application.routes.draw do
+  
+  root to: 'sessions#new'
+  resources :users
+  resource  :session, :only => [:new, :create, :destroy]
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

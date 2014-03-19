@@ -1,0 +1,26 @@
+<h1> Login to Classable </h1>
+
+<form action="<%= session_url %>" method="post" accept-charset="utf-8">
+	<%# Set up helper method to do this authenticity token %>
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<label>
+		Username / Email:<br>
+		<input 
+			type="text" 
+			name="session[user]" 
+			value="" 
+			id="session-user">
+	</label>
+	<br>
+	<label>
+		Password: <br>
+		<input 
+			type="password" 
+			name="session[password]" 
+			value="" 
+			id="session-password">
+	</label>
+	<br>
+
+	<p><input type="submit" value="Log In"></p>
+</form>

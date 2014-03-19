@@ -1,0 +1,39 @@
+<% form_action = action == :new ? users_url : user_url(@user) %>
+<% form_method = action == :new ? "post" : "put" %>
+<% button_text = action == :new ? "Sign Up" : "Update Account" %>
+
+<form action="<%= form_action %>" method="post" accept-charset="utf-8">
+	<%# Set up helper method to do this authenticity token %>
+	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+	<input type="hidden" name="_method" value="<%= form_method %>">
+	
+	<label>
+		Username:<br>
+		<input 
+			type="text" 
+			name="user[username]" 
+			value="<%= user.username %>" 
+			id="user-username">
+	</label>
+	<br>
+	<label>
+		Email Address: <br>
+		<input 
+			type="text" 
+			name="user[email]" 
+			value="<%= user.email %>" 
+			id="user-email">
+	</label>
+	<br>
+	<label>
+		Password (at least 6 characters): <br>
+		<input 
+			type="password" 
+			name="user[password]" 
+			value="<%= user.password %>" 
+			id="user-password">
+	</label>
+	<br>
+
+	<p><input type="submit" value="<%= button_text %>"></p>
+</form>
