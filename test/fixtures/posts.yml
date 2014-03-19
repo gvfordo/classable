@@ -1,0 +1,27 @@
+# == Schema Information
+#
+# Table name: posts
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer          not null
+#  post_type_id :integer          not null
+#  custom_url   :string(255)
+#  source_link  :string(255)
+#  publish_date :datetime
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_type: 1
+  custom_url: MyString
+  source_link: MyString
+  publish_date: 2014-03-19 13:51:33
+
+two:
+  post_type: 1
+  custom_url: MyString
+  source_link: MyString
+  publish_date: 2014-03-19 13:51:33

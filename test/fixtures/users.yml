@@ -9,7 +9,7 @@
 #  session_token   :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
-#  admin           :boolean
+#  admin           :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

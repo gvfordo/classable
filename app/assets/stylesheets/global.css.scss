@@ -1,0 +1,31 @@
+body {
+	background-color: #eee;
+}
+
+#outer-container {
+	width: 100%;
+}
+
+#inner-container {
+	width: 748px;
+	min-height: 300px;
+	margin: 5px auto 10px auto;
+	background-color: white;
+	border-radius: 10px;
+	padding: 10px;
+}
+
+#logged-in {
+	text-align: right;
+	width: 748px;
+	margin: 4px auto 5px auto;
+	padding: 10px;
+}
+
+.logout-div {
+	display: inline-block;
+}
+
+.clear-div {
+	clear: both;
+}

@@ -34,6 +34,10 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @user_info = {}
+    @user_info['username'] = @user.username
+    @user_info['profile-pic'] = "http://www.petfinder.com/wp-content/uploads/2012/11/101418789-cat-panleukopenia-fact-sheet-632x475.jpg"
+    render :dashboard
   end 
   
   def update

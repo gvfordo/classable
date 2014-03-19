@@ -7,20 +7,28 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<% if logged_in? %>
-		Welcome Back <%= current_user.username %> | 
-		<%= button_to "logout", session_url, :method => :delete %>
-	<% end %>
+	<div id="outer-container">
+		<% if logged_in? %>
+		<div id="logged-in">
+			Welcome Back <%= current_user.username %>  
+			<div class="logout-div"
+				<%= button_to "logout", session_url, :method => :delete %>
+			</div> 
+		</div>
+		<% end %>
+		<div id="inner-container">
+		
 
-	<% if flash[:errors] %>
-		<ul>
-			<% flash[:errors].each do |error| %>
-			<li><%= error %></li>
+			<% if flash[:errors] %>
+				<ul>
+					<% flash[:errors].each do |error| %>
+					<li><%= error %></li>
+					<% end %>
+				</ul>
 			<% end %>
-		</ul>
-	<% end %>
 
-<%= yield %>
-
+			<%= yield %>
+		</div>
+	</div>
 </body>
 </html>
