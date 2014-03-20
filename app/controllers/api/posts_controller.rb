@@ -23,8 +23,8 @@ class Api::PostsController < ApplicationController
   end
   
   def index
-    @posts = current_user.posts
-    render 'posts/index'
+    @posts = Post.includes(:text).where(:user_id => current_user.id)
+    render 'api/posts/index'
   end
   
   def new

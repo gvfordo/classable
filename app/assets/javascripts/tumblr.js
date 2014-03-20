@@ -4,7 +4,8 @@ window.Tumblr = {
   Views: {},
   Routers: {},
   initialize: function() {
-		
+		this.feed = new Tumblr.Collections.Posts();
+		this.feed.fetch();
 		new Tumblr.Routers.AppRouter({
 			$rootEl:  $('#dashboard')
 		});

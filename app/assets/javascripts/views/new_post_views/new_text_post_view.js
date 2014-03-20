@@ -1,10 +1,10 @@
-Tumblr.Views.TextPostView = Backbone.View.extend({
+Tumblr.Views.NewTextPostView = Backbone.View.extend({
 	
 	initialize: function(options) {
 		this.dashboard = options.dashboard;
 	},
 	
-	template: JST['posts/text'],
+	template: JST['new_posts/text'],
 	
 	className: "new-post",
 	

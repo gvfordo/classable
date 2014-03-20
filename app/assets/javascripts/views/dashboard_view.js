@@ -14,20 +14,26 @@ Tumblr.Views.DashboardView = Backbone.View.extend({
 		var renderedContent = this.template({ user: this.user });
 		this.$el.html(renderedContent);
 		this.showPostTypes();
+		this.showUserFeed();
 		return this;
 	},
 	
 	showPostTypes: function(formView) {
 		var postTypesView = new Tumblr.Views.PostTypesView();
-		this.$('#post-area').html(postTypesView.render().$el);
+		this.$('#post-types').html(postTypesView.render().$el);
+	},
+	
+	showUserFeed: function() {
+		var userFeedView = new Tumblr.Views.UserFeedView({ collection: Tumblr.feed });
+		this.$('#user-feed').html(userFeedView.render().$el);
 	},
 	
 	newTextPost: function() {
 		var newTextPost = new Tumblr.Models.Post();
-		var newTextPostView = new Tumblr.Views.TextPostView({ 
+		var newTextPostView = new Tumblr.Views.NewTextPostView({ 
 			model: newTextPost,
 		  dashboard: this });
-		this.$('#post-area').html(newTextPostView.render().$el);
+		this.$('#post-types').html(newTextPostView.render().$el);
 	},
 	
 	removeSubView: function(view) {
