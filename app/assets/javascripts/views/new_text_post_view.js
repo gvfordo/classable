@@ -32,11 +32,20 @@ Tumblr.Views.TextPostView = Backbone.View.extend({
 				that.dashboard.removeSubView(that);
 			},
 			
-			error: function(response) {
+			error: function(model, response) {
+				that.showErrors(response.responseJSON);
 				$submitButton.prop("disabled", false);
 			}
 			
 		})
+	},
+	
+	showErrors: function(errors) {
+		var $errorsList = $('<ul>');
+		errors.forEach(function(error){
+			$errorsList.append("<li>" + error + "</li>");
+		});
+		$('#post-errors').html($errorsList);
 	},
 	
 	cancelPost: function(event) {

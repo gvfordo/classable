@@ -18,5 +18,6 @@ class Post < ActiveRecord::Base
   belongs_to :user
   
   has_one :text, :inverse_of => :post
+  validates_associated :text
 
 end
