@@ -1,4 +1,4 @@
-require 'debugger'
+
 class Api::PostsController < ApplicationController
   before_action :authenticate
 
