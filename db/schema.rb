@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20140319210239) do
 
   create_table "texts", force: true do |t|
     t.integer  "post_id"
+    t.string   "title"
     t.text     "post_text"
     t.datetime "created_at"
     t.datetime "updated_at"

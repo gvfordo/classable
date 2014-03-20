@@ -13,9 +13,10 @@
 #
 
 class Post < ActiveRecord::Base
-  validates :user_id, :post_type, :presence => true
+  validates :user_id, :post_type_id, :presence => true
   
   belongs_to :user
   
-  has_one :text
+  has_one :text, :inverse_of => :post
+
 end

@@ -2,33 +2,44 @@
 <html>
 <head>
   <title>Tumblr</title>
+	<link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-	<div id="outer-container">
-		<% if logged_in? %>
-		<div id="logged-in">
-			Welcome Back <%= current_user.username %>  
-			<div class="logout-div"
-				<%= button_to "logout", session_url, :method => :delete %>
-			</div> 
+
+	<% if logged_in? %>
+	<div class="container top-bar">
+		<div class="row">
+			<div class="col-md-3">
+					<span id="logo-text">Classable.</span>
+			</div>
+	
+			<div class="col-md-6 text-right" >
+				  <br>
+					<%= button_to "log out", session_url, :method => :delete , :class=> "btn btn-info btn-sm"%>
+			</div>
+			
+			<div class="col-md-3 text-right"> 
+
+			</div>
 		</div>
 		<% end %>
-		<div id="inner-container">
-		
+	</div>
+	
+	<div class="container main-container">
+	
 
-			<% if flash[:errors] %>
-				<ul>
-					<% flash[:errors].each do |error| %>
-					<li><%= error %></li>
-					<% end %>
-				</ul>
-			<% end %>
+		<% if flash[:errors] %>
+			<ul>
+				<% flash[:errors].each do |error| %>
+				<li><%= error %></li>
+				<% end %>
+			</ul>
+		<% end %>
 
-			<%= yield %>
-		</div>
+		<%= yield %>
 	</div>
 </body>
 </html>

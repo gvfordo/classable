@@ -1,5 +1,13 @@
-body {
-	background-color: #eee;
+
+.top-bar {
+	margin: 20px auto 20px auto;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #7D93A8;
+}
+
+#logo-text {
+	font-family: 'Bevan', cursive;
+	font-size: 48px;
 }
 
 #outer-container {
@@ -15,11 +23,14 @@ body {
 	padding: 10px;
 }
 
+.new-post {
+	padding: 25px;
+	background-color: #27323C;
+	box-shadow: 0px 0px 5px #000;
+}
+
 #logged-in {
 	text-align: right;
-	width: 748px;
-	margin: 4px auto 5px auto;
-	padding: 10px;
 }
 
 .logout-div {
@@ -28,4 +39,18 @@ body {
 
 .clear-div {
 	clear: both;
+}
+
+.profile-image {
+	width: 80px;
+	//height: 80px;
+}
+
+
+.fleft {
+	float: left;
+}
+
+.fright {
+	float: right;
 }

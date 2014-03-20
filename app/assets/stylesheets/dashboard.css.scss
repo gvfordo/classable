@@ -1,0 +1,47 @@
+.post-type {
+	height: 75px;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	margin: 5px 0px 0px 4px;
+	width: 12.7%;
+}
+
+.post-type-spacer {
+	width: 1px;
+	border-left: 1px dashed #818181;
+	float: left;
+	height: 72px;
+	margin-top: 13px;
+}
+
+.post-type-icon {
+	height: 65px;
+}
+
+.post-type-icon {
+//	color: #ccc;
+}
+
+.new-post-title {
+	font-size: 28px;
+	margin-bottom: 15px;
+}
+
+#post-area {
+	background-color: #4e5d6c;;
+	background-clip: content-box;
+	height: 100px;
+}
+
+.left-triangle {
+	position: relative;
+	border-top: 15px solid rgba(255, 255, 255, 0);
+	border-bottom: 15px solid rgba(255, 255, 255, 0);
+	border-right: 15px solid #4e5d6c;
+	width: 0px;
+	height: 0px;
+	right: 15px;
+	top: 22px;
+	float: left;
+}

@@ -4,6 +4,10 @@ Tumblr::Application.routes.draw do
   resources :users
   resource  :session, :only => [:new, :create, :destroy]
   
+  namespace :api, :defaults => { :format => :json } do
+    resources :posts
+  end 
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
