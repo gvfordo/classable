@@ -5,7 +5,7 @@ Tumblr.Routers.AppRouter = Backbone.Router.extend({
 	},
 	
 	routes: {
-	  "" : "userDashboard" 	
+	  "" : "userDashboard"
 	},
 	
 	userDashboard: function() {

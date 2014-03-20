@@ -1,7 +1,7 @@
 Tumblr.Views.TextPostView = Backbone.View.extend({
 	
-	initialize: function() {
-		
+	initialize: function(options) {
+		this.dashboard = options.dashboard;
 	},
 	
 	template: JST['posts/text'],
@@ -10,7 +10,8 @@ Tumblr.Views.TextPostView = Backbone.View.extend({
 	
 	events: {
 		"submit form" : "createPost",
-		"click button.toggle-options" : "toggleOptions"
+		"click button.toggle-options" : "toggleOptions",
+		"click div.cancel-post" : "cancelPost"
 	},
 	
 	render: function() {
@@ -22,11 +23,26 @@ Tumblr.Views.TextPostView = Backbone.View.extend({
 	createPost: function(event) {
 		event.preventDefault();
 		$data = $(event.target).serializeJSON();
+		$submitButton = $('.btn-success')
+		$submitButton.prop('disabled', true)
+		that = this;
 		this.model.save($data, {
-			// success: function(response) {
-// 				Tumblr.posts.add(this.model)
-// 			}
+			success: function(response) {
+				//  Add post to user's feed view. Tumblr.posts.add(this.model)
+				that.dashboard.removeSubView(that);
+			},
+			
+			error: function(response) {
+				$submitButton.prop("disabled", false);
+			}
+			
 		})
+	},
+	
+	cancelPost: function(event) {
+		event.preventDefault();
+		// confirm cancelation?
+		this.dashboard.removeSubView(this);
 	},
 	
 	toggleOptions: function(event) {
