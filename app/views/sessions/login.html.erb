@@ -1,26 +1,44 @@
-<h1> Login to Classable </h1>
-
-<form action="<%= session_url %>" method="post" accept-charset="utf-8">
-	<%# Set up helper method to do this authenticity token %>
-	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-	<label>
-		Username / Email:<br>
-		<input 
-			type="text" 
-			name="session[user]" 
-			value="" 
-			id="session-user">
-	</label>
+<div class="row">
+	
+	<div class="col-md-4 col-md-offset-4 well home-well">
+	<h1 id="logo-text">Classable.</h1>
+	<p class="lead"> Sign in to Classable. </p>
+	<form action="<%= session_url %>" method="post" accept-charset="utf-8">
+		<%# Set up helper method to do this authenticity token %>
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<div class="input-group">
+			<span class="input-group-addon input-group-home glyphicon glyphicon-user"></span>
+			<input 
+			  class="form-control"
+				type="text" 
+				name="session[user]" 
+				value="" 
+				id="user-username"
+				placeholder="Username or Email">
+		</div>
+	  <br>
+			<div class="input-group">
+				<span class="input-group-addon input-group-home glyphicon glyphicon-lock"></span>
+				<input 
+					class="form-control"
+					type="password" 
+					name="session[password]" 
+					value="" 
+					id="user-password"
+					placeholder="Password (min. 6 characters)">
+			</div>
+   <br>
+		<button type="submit" class="btn btn-lg btn-info btn-full"> 
+			Log In
+		</button>
+	</form>
 	<br>
-	<label>
-		Password: <br>
-		<input 
-			type="password" 
-			name="session[password]" 
-			value="" 
-			id="session-password">
-	</label>
-	<br>
+		<p>Don't have an account yet? &nbsp;&nbsp; <%= link_to "Sign Up Here", new_user_url %></p>
+	
+	
+</div>
+</div>
 
-	<p><input type="submit" value="Log In"></p>
-</form>
+
+
+

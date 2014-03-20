@@ -1,3 +1,11 @@
-<h1>Sign Up</h1>
+<div class="row">
+	
+	<div class="col-md-4 col-md-offset-4 well home-well">
+	<h1 id="logo-text">Classable.</h1>
+	<p class="lead">Welcome to Classable!  Sign up for your classable account below to get started with the biggest little tumblr clone around!</p>
 
-<%= render "form", :user => @user, :action => :new %>
+	<%= render "form", :user => @user, :action => :new %>
+	<br>
+	Already have an account? <%= link_to "Sign In Here", new_session_url %>
+</div>
+</div>

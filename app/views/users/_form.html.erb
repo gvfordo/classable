@@ -7,33 +7,48 @@
 	<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 	<input type="hidden" name="_method" value="<%= form_method %>">
 	
-	<label>
-		Username:<br>
-		<input 
-			type="text" 
-			name="user[username]" 
-			value="<%= user.username %>" 
-			id="user-username">
-	</label>
-	<br>
-	<label>
-		Email Address: <br>
-		<input 
-			type="text" 
-			name="user[email]" 
-			value="<%= user.email %>" 
-			id="user-email">
-	</label>
-	<br>
-	<label>
-		Password (at least 6 characters): <br>
-		<input 
-			type="password" 
-			name="user[password]" 
-			value="<%= user.password %>" 
-			id="user-password">
-	</label>
+	
+		
+		<div class="input-group">
+			<span class="input-group-addon input-group-home glyphicon glyphicon-user"></span>
+			<input 
+			  class="form-control"
+				type="text" 
+				name="user[username]" 
+				value="<%= user.username %>" 
+				id="user-username"
+				placeholder="Username">
+		</div>
+
 	<br>
 
-	<p><input type="submit" value="<%= button_text %>"></p>
+		<div class="input-group">
+			<span class="input-group-addon input-group-home glyphicon glyphicon-envelope"></span>
+			<input 
+				class="form-control"
+				type="text" 
+				name="user[email]" 
+				value="<%= user.email %>" 
+				id="user-email"
+				placeholder="Email Address">
+		</div>
+
+	<br>
+
+		<div class="input-group">
+			<span class="input-group-addon input-group-home glyphicon glyphicon-lock"></span>
+			<input 
+				class="form-control"
+				type="password" 
+				name="user[password]" 
+				value="<%= user.password %>" 
+				id="user-password"
+				placeholder="Password (min. 6 characters)">
+		</div>
+
+	<br>
+
+	<button type="submit" class="btn btn-lg btn-info btn-full"> 
+		<%= button_text %>
+	</button>
 </form>
