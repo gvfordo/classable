@@ -28,7 +28,7 @@ Tumblr.Views.NewTextPostView = Backbone.View.extend({
 		that = this;
 		this.model.save($data, {
 			success: function(response) {
-				//  Add post to user's feed view. Tumblr.posts.add(this.model)
+				Tumblr.feed.add(that.model);
 				that.dashboard.removeSubView(that);
 			},
 			

@@ -6,7 +6,7 @@
 <div class="col-md-10 feed-post">
 	<div class="left-triangle"></div>
 	<div class="post-background">
-		<div class="post-author">username</div>
+		<div class="post-author"><%= post.get('author').username %></div>
 		<h4><%= post.get('text').title %></h4>
 		<div class="post-md-body"><%= post.get('text').text %></div>>
 	</div>
