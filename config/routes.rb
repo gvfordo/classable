@@ -3,7 +3,7 @@ Tumblr::Application.routes.draw do
   root to: 'sessions#new'
   resources :users
   resource  :session, :only => [:new, :create, :destroy]
-  get '/dashboard', to: 'users#show'
+  get '/dashboard', to: 'users#show', as: "dashboard"
   namespace :api, :defaults => { :format => :json } do
     resources :posts
   end 

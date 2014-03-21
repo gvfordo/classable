@@ -1,0 +1,3 @@
+class VideoPost < Post
+  
+end

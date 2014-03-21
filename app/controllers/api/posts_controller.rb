@@ -4,8 +4,10 @@ class Api::PostsController < ApplicationController
 
 
   def create
-    @post = current_user.posts.new(post_params);
-    @post.build_text(text_params);
+    post_model = Post.model_for(post_params[:post_type])
+    @post = post_model.new(post_params);
+    @post.user_id = current_user.id
+    # @post.build_text(text_params);
     if @post.save
       render 'api/posts/show'
     else
@@ -43,7 +45,9 @@ class Api::PostsController < ApplicationController
   private
   
   def post_params
-    params.require(:post).permit(:custom_url, :source_link, :publish_date, :post_type_id)
+    params.require(:post).permit(:custom_url, :source_link, :publish_date, 
+                                 :post_type, :quote, :link, :media_url,
+                                 :images => [])
   end
   
   def text_params

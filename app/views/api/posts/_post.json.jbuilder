@@ -1,4 +1,4 @@
-json.(post, :id, :custom_url, :post_type_id, :source_link, :publish_date)
+json.(post, :id, :custom_url, :post_type, :source_link, :publish_date)
 
 json.text do
   json.title post.text.title

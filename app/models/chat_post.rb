@@ -1,0 +1,3 @@
+class ChatPost < Post
+  
+end

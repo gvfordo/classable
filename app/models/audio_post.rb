@@ -1,0 +1,3 @@
+class AudioPost < Post
+  
+end

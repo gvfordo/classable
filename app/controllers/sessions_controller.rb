@@ -4,7 +4,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_credentials(session_params)
     if @user
       login!
-      redirect_to user_url(@user)
+      redirect_to dashboard_url
     else
       flash[:errors] = ["Invalid Login Information"]
       redirect_to new_session_url
