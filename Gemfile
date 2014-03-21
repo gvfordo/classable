@@ -33,6 +33,8 @@ group :doc do
 end
 
 gem 'figaro'
+gem "paperclip"
+gem "aws-sdk"
 
 group :development do
   gem 'better_errors'
