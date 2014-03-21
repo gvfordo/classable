@@ -1,23 +1,25 @@
-<form>
+<form enctype="multipart/form-data">
 <div class="fright cancel-post large-text"><span class="glyphicon glyphicon-remove-circle"></span></div>
-<div class="new-post-title">New Text Post.</div>
+<div class="new-post-title">New Image Post.</div>
 
 	<div id="post-errors"></div>
-	<input type="hidden" name="post[type]" value="Text">
+	<input type="hidden" name="post[type]" value="Image">
 		
-		
-	
-			<div class="input-group">
-				<span class="input-group-addon glyphicon glyphicon-font"></span>
-				<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="">
-			</div>
-	  </div>
+	<div class="input-group">
+		<span class="input-group-addon glyphicon glyphicon-camera"></span>
+		<input type="file" class="form-control" name="post[][image][image_url]"><br>
+	</div>
 	<br>
-	
-
+	 <!-- Title and Caption / PostText is optional for Image Posts.  Hidden until a photo is uploaded.  -->
+	<div class="optional-text hidden">		
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-font"></span>
+			<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="">
+		</div>
+		<br>
 		<textarea class="form-control" name="post[post_text]" value="" placeholder="Write your post's text here..."></textarea>
-
-	<br>
+		<br>
+	</div>
 	<button class="btn btn-warning toggle-options fright">Show Advanced Options</button>
 	<div id="adv-opt-clear-div" class="clear-div hidden"></div>
 	<div class="advanced-options hidden">

@@ -1,10 +1,17 @@
-Tumblr.Views.NewTextPostView = Backbone.View.extend({
+Tumblr.Views.NewPostView = Backbone.View.extend({
 	
 	initialize: function(options) {
 		this.dashboard = options.dashboard;
+		this.postTemplate = options.postTemplate;
 	},
 	
-	template: JST['new_posts/text'],
+	textTemplate: JST['new_posts/text'],
+	imageTemplate: JST['new_posts/image'],
+	quoteTemplate: JST['new_posts/quote'],
+	linkTemplate: JST['new_posts/link'],
+	chatTemplate: JST['new_posts/chat'],
+	audioTemplate: JST['new_posts/audio'],
+	videoTemplate: JST['new_posts/video'],
 	
 	className: "new-post",
 	
@@ -15,7 +22,7 @@ Tumblr.Views.NewTextPostView = Backbone.View.extend({
 	},
 	
 	render: function() {
-		var renderedContent = this.template({ post: this.model });
+		var renderedContent = this[this.postTemplate]({ post: this.model });
 		this.$el.html(renderedContent);
 		return this;
 	},

@@ -2,7 +2,7 @@ class CreatePosts < ActiveRecord::Migration
   def change
     create_table :posts do |t|
       t.integer :user_id, :null => false
-      t.string :post_type, :null => false
+      t.string :type, :null => false
       t.string :custom_url
       t.string :source_link
       t.string :quote, :limit => 1000

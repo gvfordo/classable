@@ -5,7 +5,7 @@ Tumblr.Views.DashboardView = Backbone.View.extend({
 	},
 	
 	events: {
-		"click div#text-post" : "newTextPost"
+		"click div.post-type" : "newPost"
 	},
 	
 	template: JST['dashboard/index'],
@@ -28,12 +28,16 @@ Tumblr.Views.DashboardView = Backbone.View.extend({
 		this.$('#user-feed').html(userFeedView.render().$el);
 	},
 	
-	newTextPost: function() {
-		var newTextPost = new Tumblr.Models.Post();
-		var newTextPostView = new Tumblr.Views.NewTextPostView({ 
-			model: newTextPost,
-		  dashboard: this });
-		this.$('#post-types').html(newTextPostView.render().$el);
+	newPost: function(event) {
+		event.preventDefault();
+		var postTemplate = $(event.currentTarget).data("type");
+		debugger
+		var newPost = new Tumblr.Models.Post();
+		var newPostView = new Tumblr.Views.NewPostView({ 
+			model: newPost,
+		  dashboard: this,
+		  postTemplate: postTemplate });
+		this.$('#post-types').html(newPostView.render().$el);
 	},
 	
 	removeSubView: function(view) {

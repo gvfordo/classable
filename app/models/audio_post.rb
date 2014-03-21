@@ -1,3 +1,0 @@
-class AudioPost < Post
-  
-end

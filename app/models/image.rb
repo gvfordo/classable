@@ -17,16 +17,7 @@
 #  updated_at   :datetime
 #
 
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  post_type: 1
-  custom_url: MyString
-  source_link: MyString
-  publish_date: 2014-03-19 13:51:33
-
-two:
-  post_type: 1
-  custom_url: MyString
-  source_link: MyString
-  publish_date: 2014-03-19 13:51:33
+class Image < Post
+  has_many :images as: :imageable
+  accepts_nested_attributes_for :images
+end

@@ -4,10 +4,8 @@ class Api::PostsController < ApplicationController
 
 
   def create
-    post_model = Post.model_for(post_params[:post_type])
-    @post = post_model.new(post_params);
-    @post.user_id = current_user.id
-    # @post.build_text(text_params);
+    # post_model = Post.model_for(post_params[:post_type])
+    @post = current_user.posts.new(post_params)
     if @post.save
       render 'api/posts/show'
     else
@@ -25,7 +23,7 @@ class Api::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.includes(:text, :user).where(:user_id => current_user.id)
+    @posts = Post.includes(:user).where(:user_id => current_user.id)
     render 'api/posts/index'
   end
   
@@ -46,12 +44,8 @@ class Api::PostsController < ApplicationController
   
   def post_params
     params.require(:post).permit(:custom_url, :source_link, :publish_date, 
-                                 :post_type, :quote, :link, :media_url,
-                                 :images => [])
+           :type, :quote, :link, :media_url, :title, :post_text,
+           :images => [])
   end
   
-  def text_params
-    params.require(:text).permit(:title, :post_text)
-  end
-
 end

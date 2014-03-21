@@ -1,3 +1,0 @@
-class LinkPost < Post
-  
-end

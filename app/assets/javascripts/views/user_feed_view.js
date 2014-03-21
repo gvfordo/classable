@@ -30,28 +30,28 @@ Tumblr.Views.UserFeedView = Backbone.View.extend({
 	},
 	
 	renderedPostType: function(post) {
-		switch(post.get('post_type')) {
-			case "TextPost":
+		switch(post.get('type')) {
+			case "Text":
 				//render TextPostShow
 				// that.$el.append(that.renderTextPost(post));
 				return this.renderTextPost(post);
 				break;
-			case "ImagePost":
+			case "Image":
 				//render ImagePostShow
 				break;
-			case "QuotePost":
+			case "Quote":
 				//render QuotePostShow
 				break;
-			case "LinkPost":
+			case "Link":
 				//render LinkPostShow
 				break;
-			case "ChatPost":
+			case "Chat":
 				//render ChatPostShow
 				break;
-			case "AudioPost": 
+			case "Audio": 
 				//render AudioPostShow
 				break;
-			case "VideoPost":
+			case "Video":
 				//render VideoPostShow
 				break;
 			default:
