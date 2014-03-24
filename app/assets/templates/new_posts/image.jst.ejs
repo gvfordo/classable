@@ -3,12 +3,23 @@
 <div class="new-post-title">New Image Post.</div>
 
 	<div id="post-errors"></div>
+	
 	<input type="hidden" name="post[type]" value="Image">
 		
-	<div class="input-group">
-		<span class="input-group-addon glyphicon glyphicon-camera"></span>
+		
+
+			<div id="drag-file-upload">Click Upload or Drag Image Files Here</div>	
+	
+	  
+		<div class="fileUpload btn btn-primary btn-large">
+		    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Upload&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+		    <input type="file" id="image-upload" class="upload" data-url="/api/pictures" multiple  />
+		
+		
+		
+		<!-- <span class="input-group-addon glyphicon glyphicon-camera"></span> -->
 		<!-- make a drop target that can also be clicked to upload images -->
-		<input type="file" id="image-upload" class="form-control" name="picture[image]" data-url="/api/pictures" multiple /><br>
+		<!-- ><input type="file" id="image-upload" class="form-control" name="picture[image]" data-url="/api/pictures" multiple /><br> -->
 	</div>
 	
 	<div id="uploaded-images"></div>
@@ -24,7 +35,7 @@
 		<textarea class="form-control" name="post[post_text]" value="" placeholder="Write your post's text here..."></textarea>
 		<br>
 	</div>
-	<button class="btn btn-warning toggle-options fright">Show Advanced Options</button>
+	<button class="btn toggle-options fright">Show Advanced Options</button>
 	<div id="adv-opt-clear-div" class="clear-div hidden"></div>
 	<div class="advanced-options hidden">
 	<br>

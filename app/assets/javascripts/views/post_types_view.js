@@ -5,7 +5,6 @@ Classable.Views.PostTypesView = Backbone.View.extend({
 	},
 	
 	events: {
-		
 	},
 	
 	template: JST['dashboard/post_types'],
@@ -14,6 +13,10 @@ Classable.Views.PostTypesView = Backbone.View.extend({
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		return this;
+	},
+	
+	postTypeHover: function(event) {
+
 	}
 	
 	

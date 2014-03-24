@@ -67,7 +67,7 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		debugger
 		this.model.save($data, {
 			success: function(response) {
-				Tumblr.feed.add(that.model);
+				Classable.feed.add(that.model);
 				that.dashboard.removeSubView(that);
 			},
 			

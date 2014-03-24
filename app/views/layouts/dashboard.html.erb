@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Classable User Dashboard</title>
+	<%= render 'layouts/layout_header'%>
+</head>
+<body>
+
+
+	<div class="container top-bar">
+		<div class="row">
+			<div class="col-md-3">
+					<span id="logo-text">Classable.</span>
+			</div>
+	
+			<div id="user-menu-area" class="col-md-6 text-right " >
+			
+					
+				
+						
+					</div>
+					
+					
+					
+			</div>
+			
+			<div class="col-md-3 text-right"> 
+
+			</div>
+		</div>
+
+	</div>
+	
+	<div class="container main-container">
+	
+
+		<% if flash[:errors] %>
+			<ul>
+				<% flash[:errors].each do |error| %>
+				<li><%= error %></li>
+				<% end %>
+			</ul>
+		<% end %>
+
+		<%= yield %>
+	</div>
+	<script type="content" id="csrf-token"><%= form_authenticity_token %></script>
+</body>
+</html>

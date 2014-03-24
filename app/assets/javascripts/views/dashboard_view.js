@@ -15,6 +15,7 @@ Classable.Views.DashboardView = Backbone.View.extend({
 		this.$el.html(renderedContent);
 		this.showPostTypes();
 		this.showUserFeed();
+		this.showUserMenu();
 		return this;
 	},
 	
@@ -37,6 +38,12 @@ Classable.Views.DashboardView = Backbone.View.extend({
 		  dashboard: this,
 		  postTemplate: postTemplate });
 		this.$('#post-types').html(newPostView.render().$el);
+	},
+	
+	showUserMenu: function() {
+		var auth_token = $('#csrf-token').html();
+		var userMenuView = new Classable.Views.UserMenuView({ token: auth_token });
+		$('#user-menu-area').html(userMenuView.render().$el);
 	},
 	
 	removeSubView: function(view) {

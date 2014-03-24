@@ -24,7 +24,6 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 	},
 	
 	addOne: function() {
-		debugger
 		var that = this;
 		that.$el.prepend(that.renderedPostType(that.collection.models[that.collection.length - 1]))
 	},
@@ -40,7 +39,7 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 				return this.renderImagePost(post);
 				break;
 			case "Quote":
-				//render QuotePostShow
+				return this.renderQuotePost(post);
 				break;
 			case "Link":
 				//render LinkPostShow
@@ -67,6 +66,11 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 	renderImagePost: function(post) {
 		var showImageView = new Classable.Views.ImagePostView({ model: post });
 		return showImageView.render().$el;
+	},
+	
+	renderQuotePost: function(post) {
+		var showQuoteView = new Classable.Views.QuotePostView({ model: post });
+		return showQuoteView.render().$el;
 	}
 	
 	

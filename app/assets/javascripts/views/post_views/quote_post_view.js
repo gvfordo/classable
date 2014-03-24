@@ -1,4 +1,4 @@
-Classable.Views.ImagePostView = Backbone.View.extend({
+Classable.Views.QuotePostView = Backbone.View.extend({
 	
 	initialize: function() {
 		
@@ -10,13 +10,12 @@ Classable.Views.ImagePostView = Backbone.View.extend({
 	
 	className: "row feed-row",
 	
-	template: JST["post_views/image"],
+	template: JST["post_views/quote"],
 	
 	
 	render: function() {
 		var renderedContent = this.template({ post: this.model });
 		this.$el.html(renderedContent);
-
 		return this;
 	}
 	

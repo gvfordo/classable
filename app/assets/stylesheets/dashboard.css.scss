@@ -1,27 +1,4 @@
-.post-type {
-	height: 100px;
-	text-align: center;
-	cursor: pointer;
-	float: left;
-	margin: 5px 0px 0px 4px;
-	width: 12.7%;
-}
 
-.post-type-spacer {
-	width: 1px;
-	border-left: 1px dashed #818181;
-	float: left;
-	height: 72px;
-	margin-top: 13px;
-}
-
-.post-type-icon {
-	height: 65px;
-}
-
-.post-type-icon {
-//	color: #ccc;
-}
 
 .image-post-frame {
 	border: 1px solid #ccc;
@@ -40,10 +17,7 @@
 	margin-bottom: 15px;
 }
 
-#post-types {
-	background-color: #4e5d6c;;
-	background-clip: content-box;
-}
+
 
 .cancel-post:hover {
 	color: #d9534f;
@@ -92,3 +66,73 @@
 	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.31);
 	color: #333;
 }
+
+/* Post Type Icons */
+
+#post-types {
+	background-color: #4e5d6c;;
+	background-clip: content-box;
+}
+
+.post-type {
+	height: 100px;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	margin: 5px 0px 0px 4px;
+	width: 12.7%;
+}
+
+.post-type-text {
+
+}
+
+.post-type-spacer {
+	width: 1px;
+	border-left: 1px dashed #818181;
+	float: left;
+	height: 72px;
+	margin-top: 13px;
+}
+
+.post-type-icon {
+	height: 50px;
+	margin-top: 10px;
+	font-size: 2.0em;
+	position:relative;
+	
+}
+
+.post-icon-wrapper{
+		bottom: 5px;
+		left: 30px;
+		position: absolute;
+		
+}
+
+.post-icon-wrapper-hover {
+	bottom: 8px;
+}
+
+.text-post-icon {
+	font-size: 1.2em;
+
+}
+
+.user-menu-item {
+	margin: 5px 0px 0px 7%;
+	
+	&:hover {
+		cursor: pointer;
+		color: #1685C4;
+	}
+}
+
+.user-menu-item:last-child {
+ margin: 5px 0px 0px 0px;	
+}
+
+.feed-quote-text {
+	font-size: 3em;
+}
+
