@@ -1,4 +1,4 @@
-Tumblr.Views.NewPostView = Backbone.View.extend({
+Classable.Views.NewPostView = Backbone.View.extend({
 	
 	initialize: function(options) {
 		this.dashboard = options.dashboard;
@@ -18,7 +18,8 @@ Tumblr.Views.NewPostView = Backbone.View.extend({
 	events: {
 		"submit form" : "createPost",
 		"click button.toggle-options" : "toggleOptions",
-		"click div.cancel-post" : "cancelPost"
+		"click div.cancel-post" : "cancelPost",
+		"change #image-upload" : "handleFiles"
 	},
 	
 	render: function() {
@@ -27,12 +28,43 @@ Tumblr.Views.NewPostView = Backbone.View.extend({
 		return this;
 	},
 	
+	
+	handleFiles: function(event) {
+		event.preventDefault()
+		var that = this;
+
+		var files = event.target.files
+		
+		for(var i = 0; i < files.length; i++) {
+
+			console.log(files[i]);
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				// This loses the file name along the way :(
+				console.log(e.target.result)
+				var $img = $('<img class="img-preview" />')
+				var $input = $('<input type="hidden" name="post[pictures_attributes][][image]">')
+				$input.val(e.target.result);
+				$img.attr("src", this.result);
+				that.$('#uploaded-images').append($img);
+				that.$('#uploaded-images').append($input);
+				that.showTextOptions
+				console.log(this.result)
+			}
+			reader.readAsDataURL(files[i]);
+	
+		}
+	},
+	
+
+	
 	createPost: function(event) {
 		event.preventDefault();
 		$data = $(event.target).serializeJSON();
 		$submitButton = $('.btn-success')
 		$submitButton.prop('disabled', true)
 		that = this;
+		debugger
 		this.model.save($data, {
 			success: function(response) {
 				Tumblr.feed.add(that.model);
@@ -45,6 +77,14 @@ Tumblr.Views.NewPostView = Backbone.View.extend({
 			}
 			
 		})
+	},
+	
+	textOptions: function(show) {
+		if(show) {
+			this.$('optional-text').show({ duration: 200 });
+		} else {
+			this.$('optional-text').hide({ duration: 200 });
+		}
 	},
 	
 	showErrors: function(errors) {
@@ -65,10 +105,15 @@ Tumblr.Views.NewPostView = Backbone.View.extend({
 		event.preventDefault();
 		$options = $('.advanced-options')
 		$button = $('.toggle-options')
-		$options.toggleClass("hidden")
-		$('#adv-opt-clear-div').toggleClass("hidden")
-		$options.hasClass("hidden") ? $button.text("Show Advanced Options") :
-																	$button.text("Hide Advanced Options");
+		$options.toggle({ 
+			 duration: 200,
+			 complete: function() {
+		 		$options.css("display") == 'none' ? 
+								$button.text("Show Advanced Options") :
+		 						$button.text("Hide Advanced Options");
+		}})
+		$('#adv-opt-clear-div').toggle({ duration: 100 })
+		
 		
 		
 	}

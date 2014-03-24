@@ -12,11 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.widget
 //= require jquery.serializeJSON
+//= require jquery.fileupload
 // '=' r'e'q'u'i're turbolinks
 //= require underscore
 //= require backbone
-//= require tumblr
+//= require classable
 //= require_tree ../templates
 //= require_tree ./models
 //= require_tree ./collections

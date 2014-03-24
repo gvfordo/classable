@@ -1,4 +1,4 @@
-Tumblr.Collections.Posts = Backbone.Collection.extend({
+Classable.Collections.Posts = Backbone.Collection.extend({
 	url: "/api/posts",
-	model: Tumblr.Models.Post
+	model: Classable.Models.Post
 });

@@ -18,6 +18,7 @@
 #
 
 class Image < Post
-  has_many :images as: :imageable
-  accepts_nested_attributes_for :images
+  has_many :pictures, as: :imageable
+  validates_associated :pictures
+  accepts_nested_attributes_for :pictures
 end

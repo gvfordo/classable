@@ -23,7 +23,8 @@ class Api::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.includes(:user).where(:user_id => current_user.id)
+    @posts = Post.includes(:user, :pictures).where(:user_id => current_user.id)
+    @posts.reverse!
     render 'api/posts/index'
   end
   
@@ -45,7 +46,7 @@ class Api::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:custom_url, :source_link, :publish_date, 
            :type, :quote, :link, :media_url, :title, :post_text,
-           :images => [])
+           :pictures_attributes => [:image]);
   end
   
 end

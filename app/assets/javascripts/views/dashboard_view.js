@@ -1,4 +1,4 @@
-Tumblr.Views.DashboardView = Backbone.View.extend({
+Classable.Views.DashboardView = Backbone.View.extend({
 	
 	initialize: function(options) {
 		this.user = options.user;
@@ -19,21 +19,20 @@ Tumblr.Views.DashboardView = Backbone.View.extend({
 	},
 	
 	showPostTypes: function(formView) {
-		var postTypesView = new Tumblr.Views.PostTypesView();
+		var postTypesView = new Classable.Views.PostTypesView();
 		this.$('#post-types').html(postTypesView.render().$el);
 	},
 	
 	showUserFeed: function() {
-		var userFeedView = new Tumblr.Views.UserFeedView({ collection: Tumblr.feed });
+		var userFeedView = new Classable.Views.UserFeedView({ collection: Classable.feed });
 		this.$('#user-feed').html(userFeedView.render().$el);
 	},
 	
 	newPost: function(event) {
 		event.preventDefault();
 		var postTemplate = $(event.currentTarget).data("type");
-		debugger
-		var newPost = new Tumblr.Models.Post();
-		var newPostView = new Tumblr.Views.NewPostView({ 
+		var newPost = new Classable.Models.Post();
+		var newPostView = new Classable.Views.NewPostView({ 
 			model: newPost,
 		  dashboard: this,
 		  postTemplate: postTemplate });

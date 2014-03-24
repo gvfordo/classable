@@ -1,4 +1,4 @@
-Tumblr.Views.PostTypesView = Backbone.View.extend({
+Classable.Views.PostTypesView = Backbone.View.extend({
 	
 	initialize: function() {
 		

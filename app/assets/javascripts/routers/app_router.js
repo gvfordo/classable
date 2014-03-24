@@ -1,4 +1,4 @@
-Tumblr.Routers.AppRouter = Backbone.Router.extend({
+Classable.Routers.AppRouter = Backbone.Router.extend({
 	
 	initialize: function(options) {
 		this.$rootEl =  options.$rootEl;
@@ -10,7 +10,7 @@ Tumblr.Routers.AppRouter = Backbone.Router.extend({
 	
 	userDashboard: function() {
 		var user = JSON.parse($('#user-info').html());
-		var dashboardView = new Tumblr.Views.DashboardView({ user: user })
+		var dashboardView = new Classable.Views.DashboardView({ user: user })
 		this._swapView(dashboardView);
 	},
 	

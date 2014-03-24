@@ -1,12 +1,12 @@
-window.Tumblr = {
+window.Classable = {
   Models: {},
   Collections: {},
   Views: {},
   Routers: {},
   initialize: function() {
-		this.feed = new Tumblr.Collections.Posts();
+		this.feed = new Classable.Collections.Posts();
 		this.feed.fetch();
-		new Tumblr.Routers.AppRouter({
+		new Classable.Routers.AppRouter({
 			$rootEl:  $('#dashboard')
 		});
 		Backbone.history.start();
@@ -15,6 +15,6 @@ window.Tumblr = {
 
 $(document).ready(function(){
 	if($('#dashboard').is('div')){
-	  Tumblr.initialize();		
+	  Classable.initialize();		
 	}
 });

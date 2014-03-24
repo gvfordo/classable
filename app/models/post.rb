@@ -20,23 +20,10 @@
 
 
 class Post < ActiveRecord::Base
-  # POST_TYPES = {
-  #   "TextPost" => TextPost,
-  #   "QuotePost" => QuotePost,
-  #   "ImagePost" => ImagePost,
-  #   "LinkPost" => LinkPost,
-  #   "ChatPost" => ChatPost,
-  #   "AudioPost" => AudioPost,
-  #   "VideoPost" => VideoPost
-  # }
-  
-  
+
   validates :user_id, :type, :presence => true
   
   belongs_to :user
-  
-  # def self.model_for(type) 
-  #   POST_TYPES[type]
-  # end
+  has_many :pictures, as: :imageable
 
 end

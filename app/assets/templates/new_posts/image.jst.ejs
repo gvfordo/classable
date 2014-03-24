@@ -7,8 +7,12 @@
 		
 	<div class="input-group">
 		<span class="input-group-addon glyphicon glyphicon-camera"></span>
-		<input type="file" class="form-control" name="post[][image][image_url]"><br>
+		<!-- make a drop target that can also be clicked to upload images -->
+		<input type="file" id="image-upload" class="form-control" name="picture[image]" data-url="/api/pictures" multiple /><br>
 	</div>
+	
+	<div id="uploaded-images"></div>
+
 	<br>
 	 <!-- Title and Caption / PostText is optional for Image Posts.  Hidden until a photo is uploaded.  -->
 	<div class="optional-text hidden">		

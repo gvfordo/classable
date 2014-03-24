@@ -1,4 +1,4 @@
-Tumblr.Views.UserFeedView = Backbone.View.extend({
+Classable.Views.UserFeedView = Backbone.View.extend({
 	
 	initialize: function(){
 		this.listenTo(this.collection, "sync add", this.render);
@@ -37,7 +37,7 @@ Tumblr.Views.UserFeedView = Backbone.View.extend({
 				return this.renderTextPost(post);
 				break;
 			case "Image":
-				//render ImagePostShow
+				return this.renderImagePost(post);
 				break;
 			case "Quote":
 				//render QuotePostShow
@@ -60,8 +60,13 @@ Tumblr.Views.UserFeedView = Backbone.View.extend({
 	},
 	
 	renderTextPost: function(post) {
-		var showTextView = new Tumblr.Views.TextPostView({ model: post });
+		var showTextView = new Classable.Views.TextPostView({ model: post });
 		return showTextView.render().$el;
+	},
+	
+	renderImagePost: function(post) {
+		var showImageView = new Classable.Views.ImagePostView({ model: post });
+		return showImageView.render().$el;
 	}
 	
 	

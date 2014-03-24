@@ -6,6 +6,7 @@ Tumblr::Application.routes.draw do
   get '/dashboard', to: 'users#show', as: "dashboard"
   namespace :api, :defaults => { :format => :json } do
     resources :posts
+    resources :pictures, :only => [:create]
   end 
   
   # The priority is based upon order of creation: first created -> highest priority.
