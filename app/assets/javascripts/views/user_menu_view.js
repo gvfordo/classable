@@ -5,6 +5,7 @@ Classable.Views.UserMenuView = Backbone.View.extend({
 	},
 	
 	events: {
+		"click #log-out-form" : "logOut"
 		
 	},
 	
@@ -15,6 +16,10 @@ Classable.Views.UserMenuView = Backbone.View.extend({
 		var renderedContent = this.template({ token: this.token })
 		this.$el.html(renderedContent);
 		return this;
+	},
+	
+	logOut: function() {
+		$('#log-out-form').submit();
 	}
 
 	

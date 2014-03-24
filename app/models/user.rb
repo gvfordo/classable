@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
   validates :username, :email, :password_digest, :session_token, :presence => true
   validates :username, :email, :uniqueness => true
   before_validation :ensure_session_token
-  
+  validate :name_not_reserverd
   has_many :posts
   
   def self.generate_session_token
@@ -54,6 +54,16 @@ class User < ActiveRecord::Base
   
   
   private
+  
+  def name_not_reserverd
+    reserved_names = ['admin', 'about', 'about-us', 'contact', 'api', 'dashboard', 
+      'tos', 'terms-of-service', 'themes', 'signup', 'login', 'session', 'post',
+      'blog', 'feed', 'user', 'users', 'picture', 'image']
+      
+    if reserved_names.include?(self.username.downcase)
+      errors.add(:username, "is not an allowed username.")
+    end
+  end
   
   def ensure_session_token
     self.session_token ||= self.class.generate_session_token

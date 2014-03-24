@@ -1,5 +1,5 @@
 <div class="user-menu-item fright">
-		<form action="/session" method="post">
+		<form id="log-out-form" action="/session" method="post">
 			<input type="hidden" name="_method" value="DELETE">
 			<input type="hidden" name="authenticity_token" value="<%= token %>">
 			<i title="Logout" class="fa fa-power-off fa-3x"></i>
