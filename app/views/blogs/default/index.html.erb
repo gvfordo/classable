@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]><html class="lt-ie10 lt-ie9 lt-ie8 lt-ie7"><![endif]-->
+<!--[if IE 7]><html class="lt-ie10 lt-ie9 lt-ie8"><![endif]-->
+<!--[if IE 8]><html class="lt-ie10 lt-ie9"> <![endif]-->
+<!--[if IE 9]><html class="lt-ie10"> <![endif]-->
+<!--[if gt IE 9]><!--> <html> <!--<![endif]-->
+    <head>
+    
+        <meta charset="utf-8">
+        <title><%= @blog['meta-title'] %> <%# {block:SearchPage} ({lang:Search results for SearchQuery}){/block:SearchPage}{block:PermalinkPage}{block:PostSummary} — {PostSummary}{/block:PostSummary}{/block:PermalinkPage}  %></title>
+        <% if @blog['meta-description'] %>
+        <meta name="description" content="<%= @blog['meta-description'] %>">
+	       <% end %>
+        
+        <!-- Theme Defaults -->
+        <meta name="Title font" content="Helvetica Neue">
+        <meta name="Title font weight" content="bold" title="Bold">
+        <meta name="Title font weight" content="normal" title="Normal">
+        <meta name="Body font" content="Helvetica Neue">
+        <meta name="Background color" content="#f6f6f6">
+        <meta name="Title color" content="#444444">
+        <meta name="Link color" content="#529ecc">
+        <meta name="Header image" content="">
+        <meta name="Show description" content="1">
+        <meta name="Show title" content="1">
+        <meta name="Show avatar" content="1">
+        <meta name="Show header image" content="1">
+        <meta name="Avatar shape" content="circle" title="Circle">
+        <meta name="Avatar shape" content="square" title="Square">
+
+        <meta name="if:Sliding header" content="1">
+        <meta name="if:Stretch header image" content="1">     
+        <meta name="if:Collapse navigation" content="1">
+        <meta name="if:Endless scrolling" content="1">
+
+        <meta name="select:Layout" content="regular" title="Regular">
+        <meta name="select:Layout" content="narrow" title="Narrow">
+        <meta name="select:Layout" content="grid" title="Grid">
+
+        <meta name="text:Disqus shortname" content="">
+        <meta name="text:Google analytics ID" content="">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="shortcut icon" href="{Favicon}">
+        <link rel="apple-touch-icon-precomposed" href="{PortraitURL-128}">
+        <link rel="alternate" type="application/rss+xml" href="{RSS}">
+        
+        <link rel="stylesheet" href="http://static.tumblr.com/vr9xgox/PuGmmhqcs/normalize.css">
+        <link rel="stylesheet" href="http://static.tumblr.com/vr9xgox/9Ljn20v9r/main.css">
+
+        <!-- HTML5 Shiv -->
+        <!--[if lt IE 9]>
+                <script src="http://static.tumblr.com/hriofhd/Qj0m8pn7q/html5shiv.js"></script>
+        <![endif]-->
+
+        <style>
+            /* Colors */
+            body {
+                background: {BackgroundColor};
+                font-family: {BodyFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
+            }
+
+            h1 {
+                font-family: {TitleFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
+                font-weight: {TitleFontWeight};
+            }
+
+            h2, .attribution-tags {
+                font-family: {BodyFont}, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
+            }
+
+            h1 a,
+            #pagination a,
+            .exposed-nav-wrapper li a,
+            .sub-title,
+            .search-header {
+                color: {TitleColor};
+            }
+            
+            #pagination a.next:after {
+                border-left-color: {TitleColor};
+            }
+
+            #pagination a.previous:after {
+                border-right-color: {TitleColor};
+            }
+
+            .h-line {
+                background: {TitleColor};
+            }
+
+            a {
+                color: {LinkColor};
+            }
+
+            .link-wrapper h2 a {
+                background-color: {LinkColor};
+            }
+            
+            .header-image {
+                background-image: url('http://placekitten.com/g/1600/400');
+								opacity: 0.3;
+            }
+
+            .user-avatar {
+                background-color: {BackgroundColor};
+                border-color: {BackgroundColor};
+            }
+
+            .avatar-style-square .user-avatar {
+                -wekbit-box-shadow: 0 0 0 4px {BackgroundColor};
+                -moz-box-shadow: 0 0 0 4px {BackgroundColor};
+                box-shadow: 0 0 0 4px {BackgroundColor};
+            }
+            
+            @media screen and (max-device-width: 568px) {
+                .header-image {
+                    background-image: url({HeaderImage-1024});
+                }
+            }
+
+            /* Custom CSS */
+            {CustomCSS}
+        </style>
+    </head>
+    <body data-urlencoded-name="{URLEncodedName}" class="{select:Layout}{block:IndexPage} index-page{/block:IndexPage}{block:PermalinkPage} permalink{/block:PermalinkPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}">
+        <section id="page">
+            <div class="nav-menu-wrapper {block:IfNotCollapseNavigation}search-only{/block:IfNotCollapseNavigation}">
+               
+                <div class="glass"></div>
+            </div>
+            <div class="nav-menu-bg"></div>
+            <div class="header-wrapper
+                {block:HideTitle}{block:HideDescription}no-title-desc {/block:HideDescription}{/block:HideTitle}
+                {block:HideHeaderImage}no-image {/block:HideHeaderImage}
+                {block:HideAvatar}avatar-hidden{/block:HideAvatar}
+                {block:ShowAvatar}avatar-style-{AvatarShape}{/block:ShowAvatar}">
+
+                <header id="header">
+                    <%# if @blog['showHeaderImage'] && 													  !@blog['showHeaderImage'].empty? %>
+										
+                    <div class="header-image-wrapper">
+                        <a href="/" class="header-image" data-bg-image="http://placekitten.com/g/1600/400"></a>
+                    </div>
+                    <%# end %>
+
+                    <div class="blog-title content">
+                        <figure class="avatar-wrapper">
+                            <a href="/<%= @user.username %>" style="background-image: url(<%= @user['avatar'] ? @user.avatar(:thumb) : 'http://placekitten.com/g/100/100' %>)" class="user-avatar"><img src=" " alt="" class="print-only invisible"></a>
+                        </figure>
+                        <% unless @blog['title'].empty? %>
+                        <h1><a href="/"><%= @blog['title'] %></a></h1>
+                        <% end %>
+												
+                         <% unless @blog['description'] && @blog['description'].empty? %>
+                        <span class="sub-title">
+                            <%= @blog['description'] %>
+                        </span>
+												<% end %>               
+                    </div>
+
+                 
+                    <div class="back-to-top"><a class="top" href="#"></a></div>
+                </header>
+            </div>
+           
+            <section id="posts" class="content clearfix {block:HideTitle}{block:HideDescription}no-title-desc {/block:HideDescription}{/block:HideTitle}{block:HideHeaderImage}no-image {/block:HideHeaderImage} avatar-style-{AvatarShape}">
+    
+                <div data-page-id="{CurrentPage}">
+                    <% @posts.each do |post| %>
+                            <article class="<%= post.type %>" data-post-id="post_<%= post.id %>">
+                                <div class="post-wrapper clearfix">
+                                    <section class="post">
+																			
+																			<% if post.type == "Text" %>
+                                        
+                                            <h2><a href="{Permalink}"><%= post.title %></a></h2>
+                                         
+                                            <div class="body-text">
+                                                <%= post.post_text %>
+                                            </div>
+                                        
+                                      
+
+                                      <% elsif post.type == "Image" %>
+																			
+																			  <% post.pictures.each do |picture| %>
+                                        <figure class="" data-photo-width="">
+                                            <div class="photo-wrapper">
+                                                <div class="photo-wrapper-inner">
+                                                    <img src="<%= picture.image.url(:large) %>" alt="" width="" height="">
+                                                </div>
+                                            </div>
+                                 
+                                        </figure>
+																				<% end %>
+                                 
+
+                                      <% elsif post.type == "Quote" %>
+
+                                       
+                                        <blockquote class="<%= post.quote.length %>">
+                                            <%= post.quote %>
+                                        </blockquote>
+
+                                        <div class="source"><%= post.source_link %></div>
+ 
+
+
+                                        <% elsif post.type == "Link" %>
+																				
+                                        <div class="link-wrapper">
+                                            <h2><a {Target} href="{URL}">{Name}</a></h2>
+                                        </div>
+                                        {block:Description}
+                                        <div class="caption">
+                                            {Description}
+                                        </div>
+                                        {/block:Description}
+                                        
+																				<% elsif post.type == "Chat" %>
+
+
+                                       
+                                        {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
+                                            <ul class="conversation">
+                                            {block:Lines}
+                                                <li class="chat-{Alt}">{block:Label}<span class="label">{Label}</span>{/block:Label} {Line}</li>
+                                            {/block:Lines}
+                                            </ul>
+                                       
+																			 <% elsif post.type == "Audio" %>
+
+
+                                        <div class="audio_container">
+                                            {block:AudioEmbed}
+                                                {AudioEmbed color="white"}
+                                            {/block:AudioEmbed}
+                                        </div>
+                                        {block:Caption}
+                                        <div class="caption">
+                                            {Caption}
+                                        </div>
+                                        {/block:Caption}
+                                       
+																			  <% elsif post.type == "Video" %>                        
+                                        <figure {block:Caption}class="with-caption"{/block:Caption}>
+                                            <div class="video-wrapper">
+                                                {Video-700}
+                                            </div>
+                                            {block:Caption}
+                                            <figcaption class="caption">
+                                                {Caption}
+                                            </figcaption>
+                                            {/block:Caption}
+                                        </figure>
+                                        <% end %>
+
+                                        <% if false && blog.tags.length > 0 %>
+                                            {block:HasTags}
+                                            <section class="attribution-tags clearfix">
+                                                <ul>
+                                                    {block:ContentSource}
+                                                    <li>
+                                                        <a class="source-link" href="{SourceURL}">{lang:Source}: {SourceTitle}</a>
+                                                    </li>
+                                                    {/block:ContentSource}
+                                                    {block:Tags}
+                                                        <li>
+                                                            <a href="{TagURL}" class="tag">{Tag}</a>
+                                                        </li>
+                                                    {/block:Tags}
+                                                </ul>
+                                            </section>
+                                           <% end %>                              
+
+                                    </section>
+                                    
+                                   
+                                    <section class="panel">
+                                        <footer class="post-footer">
+                                            <section class="meta"> 
+																							<p></p>
+                                                <ul class="post-date">
+                                                    <li>
+                                                        <a href="{Permalink}" title=""><%= post.created_at.strftime('%b %-d %-m, %Y') %></a>
+                                                    </li>
+																									
+                                                   
+                                                    <li> 
+                                                        <a href="#notes"><%# Add note counts here? %></a>
+                                                    </li>
+                                                   
+                                                </ul>
+                                            </section>
+                                            
+                                            <section class="post-controls">
+                                                <ul>
+                                                    <li class="share-control">
+                                                        <nav class="pop">
+                                                            <a href="#" class="share selector"></a>
+                                                            <div class="pop-menu share-menu south" id="share_{PostID}">
+                                                                <ul>
+                                                                    <li class="open-in-app"><a href="#" class="share-item open-in-app" data-post="{PostID}">Open in app</a></li>
+                                                                    <li><a href="http://facebook.com/sharer.php?u={URLEncodedPermalink}&amp;t={URLEncodedTitle}" class="share-item facebook" target="_blank">Facebook</a></li>
+                                                                    <li><a href="https://twitter.com/intent/tweet?text={URLEncodedTweetSummary}" class="share-item twitter" target="_blank">Tweet</a></li>
+                                                                    <li><a href="mailto:?subject={URLEncodedShareString}&amp;body={URLEncodedMailSummary}" class="share-item mail">Mail</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </nav>
+                                                    </li>
+                                                    <li class="reblog-control">Steal It</li>
+                                                    <li class="like-control">Lik It</li>
+                                                </ul>
+                                            </section>
+                                        </footer>
+                                    </section>
+                                    
+																		<% if false && is_permalink_page? %>
+																		
+                                        {block:PostNotes}
+                                        <section id="notes" class="notes-wrapper clearfix">
+                                            {PostNotes-64}
+                                        </section>
+                                        {/block:PostNotes}
+
+                                        {block:Date}
+
+                                            {block:IfDisqusShortname}
+                                            <section class="comments">
+                                                <div id="disqus_thread"></div>
+                                                <script type="text/javascript">
+                                                  (function() {
+                                                   var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                                                   dsq.src = 'http://{text:Disqus Shortname}.disqus.com/embed.js';
+                                                   (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                                                  })();
+                                                </script>
+                                                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript={text:Disqus Shortname}">comments powered by Disqus.</a></noscript>
+                                                <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+                                            </section>
+                                            {/block:IfDisqusShortname}
+
+                                        {/block:Date}
+
+                                    <% end %>
+                                </div>
+                            </article>
+                   <% end %>
+                </div>
+            </section>
+            <footer id="footer" class="content clearfix">
+                {block:IndexPage}
+                    {block:Pagination}
+                    <div id="pagination">
+                        {block:PreviousPage}
+                        <a href="{PreviousPage}" class="previous" data-current-page="{CurrentPage}" data-total-pages="{TotalPages}">{lang:Previous}<span class="bg"></span></a>
+                        {/block:PreviousPage}
+                        {block:NextPage}
+                        <a href="{NextPage}" class="next" data-current-page="{CurrentPage}" data-total-pages="{TotalPages}">{lang:Next}<span class="bg"></span></a>
+                        {/block:NextPage}
+                        <div class="loader"></div>
+                    </div>
+                    {/block:Pagination}
+                {/block:IndexPage}
+            </footer>
+        </section>
+     
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script>!window.jQuery && document.write(unescape('%3Cscript src="http://static.tumblr.com/vr9xgox/sBgmmjhyw/jquery-1.9.1.min.js"%3E%3C/script%3E'));</script>
+        <script src="http://static.tumblr.com/vr9xgox/Azhmnml1q/jquery.masonry.min.js"></script>
+        <script src="http://static.tumblr.com/vr9xgox/q6Bmzia9p/main-min.js"></script>
+
+       
+    </body>
+</html>
