@@ -5,7 +5,12 @@ class Api::PostsController < ApplicationController
 
   def create
     # post_model = Post.model_for(post_params[:post_type])
+    puts "Got into the create method!"
+    puts "Post Params"
+    p post_params
     @post = current_user.posts.new(post_params)
+    puts "The post we're making is.: "
+    p @post
     if @post.save
       render 'api/posts/show'
     else
@@ -23,6 +28,7 @@ class Api::PostsController < ApplicationController
   end
   
   def index
+    puts "Got into the Index Method"
     @posts = Post.includes(:user, :pictures).where(:user_id => current_user.id)
     @posts.reverse!
     render 'api/posts/index'

@@ -72,6 +72,8 @@ Classable.Views.NewPostView = Backbone.View.extend({
 			},
 			
 			error: function(model, response) {
+				console.log(model);
+				console.log(response);
 				that.showErrors(response.responseJSON);
 				$submitButton.prop("disabled", false);
 			}
