@@ -33,11 +33,8 @@ class UsersController < ApplicationController
   end
   
   def show
+    user_info
   
-    @user = current_user
-    @user_info = {}
-    @user_info['username'] = @user.username
-    @user_info['profile-pic'] = "http://www.petfinder.com/wp-content/uploads/2012/11/101418789-cat-panleukopenia-fact-sheet-632x475.jpg"
     render :dashboard, :layout =>  'dashboard'
   end 
   
@@ -53,6 +50,13 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def user_info
+    @user = current_user
+    @user_info = {}
+    @user_info['username'] = @user.username
+    @user_info['profile-pic'] = "http://www.petfinder.com/wp-content/uploads/2012/11/101418789-cat-panleukopenia-fact-sheet-632x475.jpg"
+  end
   
   def user_params
     params.require(:user).permit(:username, :email, :password)

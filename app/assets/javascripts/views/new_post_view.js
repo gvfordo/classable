@@ -25,7 +25,13 @@ Classable.Views.NewPostView = Backbone.View.extend({
 	render: function() {
 		var renderedContent = this[this.postTemplate]({ post: this.model });
 		this.$el.html(renderedContent);
+		this.activateEditor();
 		return this;
+	},
+	
+	activateEditor: function() {
+		debugger
+		this.$('.editor').griffinEditor();
 	},
 	
 	

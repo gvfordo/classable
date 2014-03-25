@@ -17,10 +17,12 @@ class SessionsController < ApplicationController
   end
   
   def new
-    render :login
+    if logged_in? 
+      redirect_to dashboard_url 
+    else
+      render :login
+    end
   end
-  
-
 
   private
   

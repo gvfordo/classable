@@ -6,9 +6,10 @@
 <div class="col-md-10 feed-post">
 	<div class="left-triangle"></div>
 	<div class="post-background">
-		<div class="post-author"><%= post.get('author').username %></div>
-		<h4><%= post.get('title') %></h4>
-		<div class="post-md-body"><%= post.get('post_text') %></div>
+		<% var user = _.escape(post.get('author').username) %>
+		<div class="post-author"><a href="/<%= user %>"><%= user %></a></div>
+		<h4><%= post.escape('title') %></h4>
+		<div class="post-md-body"><%= marked(post.escape('post_text')) %></div>
 	</div>
 <div class="clear-div"></div>
 </div>

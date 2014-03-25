@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
   private
   
   def name_not_reserverd
-    reserved_names = ['admin', 'about', 'about-us', 'contact', 'api', 'dashboard', 
+    reserved_names = ['admin', 'assets', 'about', 'about-us', 'contact', 'api', 'dashboard', 
       'tos', 'terms-of-service', 'themes', 'signup', 'login', 'session', 'post',
       'blog', 'feed', 'user', 'users', 'picture', 'image']
       
