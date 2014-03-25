@@ -28,7 +28,20 @@ class Api::PostsController < ApplicationController
   end
   
   def index
-    puts "Got into the Index Method"
+    subscribed_to = current_user.subscription_users.pluck(:subscribee_id)
+    subscribed_to.push(current_user.id)
+    @posts = Post.includes(:user, :pictures).order(:created_at).where(:user_id => subscribed_to)
+    @posts.reverse!
+    render 'api/posts/index'
+  end
+  
+  def following
+    @posts = Post.includes(:user, :pictures).where(:user_id => current_user.id)
+    @posts.reverse!
+    render 'api/posts/index'
+  end
+  
+  def favorited
     @posts = Post.includes(:user, :pictures).where(:user_id => current_user.id)
     @posts.reverse!
     render 'api/posts/index'

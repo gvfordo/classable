@@ -54,7 +54,7 @@ Classable.Views.NewPostView = Backbone.View.extend({
 				$img.attr("src", this.result);
 				that.$('#uploaded-images').append($img);
 				that.$('#uploaded-images').append($input);
-				that.showTextOptions
+				that.showTextOptions();
 				console.log(this.result)
 			}
 			reader.readAsDataURL(files[i]);
@@ -62,7 +62,9 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		}
 	},
 	
-
+	showTextOptions: function() {
+		this.$('.optional-text').show({ duration: 1000, effect: $.slideDown })
+	},
 	
 	createPost: function(event) {
 		event.preventDefault();

@@ -21,6 +21,22 @@ class User < ActiveRecord::Base
   validate :name_not_reserverd
   has_many :posts
   
+  has_many  :subscriptions,
+            :primary_key => :id,
+            :foreign_key => :subscriber_id,
+            :class_name => "Subscription"
+  
+  
+  has_many  :subscribers,
+            :primary_key => :id,
+            :foreign_key => :subscribee_id,
+            :class_name => "Subscription"
+            
+  has_many :subscription_users, :through => :subscriptions, :source => :subscribee
+  has_many :subscription_posts, :through => :subscription_users, :source => :posts
+  
+  has_many :subscribed_users, :through => :subscribers, :source => :subscriber
+  
   def self.generate_session_token
     SecureRandom::urlsafe_base64(16)
   end

@@ -154,6 +154,16 @@
                         <h1><a href="/"><%= @blog['title'] %></a></h1>
                         <% end %>
 												
+												<% if logged_in? %>
+												  <% button_text = "" %>
+													<form action="<%= api_subscriptions_url %>" method="post">
+														<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+				
+														<input type="hidden" name="subscription[subscribee_id]" value="<%= @blog['id'] %>">
+												 <button>Follow This Blog </button>
+												 </form>
+												<% end %>
+												
                          <% unless @blog['description'] && @blog['description'].empty? %>
                         <span class="sub-title">
                             <%= @blog['description'] %>

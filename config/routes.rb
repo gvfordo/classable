@@ -7,6 +7,7 @@ Tumblr::Application.routes.draw do
   namespace :api, :defaults => { :format => :json } do
     resources :posts
     resources :pictures, :only => [:create]
+    resources :subscriptions, :only => [:create, :destroy]
   end 
   
   get ':username/post/:post-title', to: 'blogs#post'
