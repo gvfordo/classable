@@ -5,15 +5,24 @@ Classable.Routers.AppRouter = Backbone.Router.extend({
 	},
 	
 	routes: {
-	  "" : "userDashboard"
+	  "" : "userDashboard",
+		"account-settings" : "accountSettings",
+		"blog-settings" : "blogSettings"
 	},
 	
 	userDashboard: function() {
-		var user = JSON.parse($('#user-info').html());
-		var dashboardView = new Classable.Views.DashboardView({ user: user })
+		var dashboardView = new Classable.Views.DashboardView({ user: Classable.user })
 		this._swapView(dashboardView);
 	},
 	
+	accountSettings: function() {
+		var accountSettings = new Classable.Views.AccountSettingsView({});
+		this._swapView(accountSettings);
+	},
+	
+	blogSettings: function() {
+		
+	},
 	
 	_swapView: function(view) {
 		if(this._currentView) {

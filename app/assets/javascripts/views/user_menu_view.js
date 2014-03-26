@@ -1,21 +1,25 @@
 Classable.Views.UserMenuView = Backbone.View.extend({
 
 	initialize: function(options) {
-		this.token = options.token;
+		this.token = $('#csrf-token').html();
 	},
 	
 	events: {
-		"click #log-out-form" : "logOut"
+		"click #log-out-form" : "logOut",
+		"click .menu-icon" : "menuClick"
 		
 	},
 	
 	template: JST['dashboard/menu'],
 	
 	render: function () {
-		debugger
 		var renderedContent = this.template({ token: this.token })
 		this.$el.html(renderedContent);
 		return this;
+	},
+	
+	menuClick: function(event) {
+		
 	},
 	
 	logOut: function() {

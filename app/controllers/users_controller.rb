@@ -54,12 +54,14 @@ class UsersController < ApplicationController
   def user_info
     @user = current_user
     @user_info = {}
+    @user_info['id'] = @user.id
     @user_info['username'] = @user.username
-    @user_info['profile-pic'] = "http://www.petfinder.com/wp-content/uploads/2012/11/101418789-cat-panleukopenia-fact-sheet-632x475.jpg"
+    @user_info['email'] = @user.email
+    @user_info['avatar'] = @user.avatar.url(:thumb)
   end
   
   def user_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :avatar)
   end
 
 end

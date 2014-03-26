@@ -6,6 +6,8 @@ window.Classable = {
   initialize: function() {
 		this.feed = new Classable.Collections.Posts();
 		this.feed.fetch();
+		var user = JSON.parse($('#user-info').html());
+		this.user = new Classable.Models.User(user, { parse: true })
 		new Classable.Routers.AppRouter({
 			$rootEl:  $('#dashboard')
 		});
@@ -13,8 +15,3 @@ window.Classable = {
   }
 };
 
-$(document).ready(function(){
-	if($('#dashboard').is('div')){
-	  Classable.initialize();		
-	}
-});

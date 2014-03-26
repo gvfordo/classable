@@ -1,0 +1,63 @@
+<div class="row">
+	
+	<div class="col-md-8" id="dashboard-account-settings">
+	  <div class="row">
+			<div class="col-md-10 col-md-offset-1 settings-title">
+				<h2>Account Settings</h2>
+			</div>	
+			
+		</div>
+		
+		<form>
+		  <div class="row">
+			  <div class="col-md-10 col-md-offset-1">
+					Current Avatar <br>
+					 <img src="<%= user.escape('avatar') %>" 
+					 			id="user-avatar-image" 
+								class="img-circle profile-image"> <br><br>
+					<div class="fileUpload btn btn-primary">			    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Change Avatar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+					<input type="file" id="image-upload" class="upload" data-url="/api/pictures" multiple  />
+					<div id="avatar-area"></div>
+				  </div>
+			  </div>
+			
+				
+						
+				
+			</div>
+			
+		  <div class="row">
+			  <div class="col-md-10 col-md-offset-1">
+					<br>
+			 		<div class="input-group ">
+						<label for="user-email">Email Address:</label><br>
+			 			<input class="form-control" type="text" name="user[email]" placeholder="Email Address" value="<%= user.escape('email') %>" id="user-email">
+			     </div>
+			
+				</div>			
+			</div>
+			
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<br>
+					<button class="btn btn-success">Save Changes </button>
+					</div>
+			</div>
+		
+			
+	  </form>
+			
+		 
+		  
+			
+	
+		<div class="clear-div"></div>
+		
+		</div>
+
+	
+	<div id="right-side-bar" class="col-md-3 col-md-offset-1 well well-sm">
+		<h4><%= user.escape('username') %>'s Dashboard </h4>
+		<p>Welcome to classable!.  Click any of the post types to write a new entry in your blog.</p>
+	</div>
+</div>

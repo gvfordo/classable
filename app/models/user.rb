@@ -2,18 +2,24 @@
 #
 # Table name: users
 #
-#  id              :integer          not null, primary key
-#  username        :string(255)
-#  email           :string(255)
-#  password_digest :string(255)
-#  session_token   :string(255)
-#  created_at      :datetime
-#  updated_at      :datetime
-#  admin           :boolean          default(FALSE)
+#  id                  :integer          not null, primary key
+#  username            :string(255)
+#  email               :string(255)
+#  password_digest     :string(255)
+#  session_token       :string(255)
+#  created_at          :datetime
+#  updated_at          :datetime
+#  admin               :boolean          default(FALSE)
+#  avatar_file_name    :string(255)
+#  avatar_content_type :string(255)
+#  avatar_file_size    :integer
+#  avatar_updated_at   :datetime
 #
 
 class User < ActiveRecord::Base
   attr_reader :password
+  has_attached_file :avatar, :styles => { :medium => "300x200>", :thumb => "100x100#"}
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
   
   validates :username, :email, :password_digest, :session_token, :presence => true
   validates :username, :email, :uniqueness => true

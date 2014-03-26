@@ -8,6 +8,7 @@ Tumblr::Application.routes.draw do
     resources :posts
     resources :pictures, :only => [:create]
     resources :subscriptions, :only => [:create, :destroy]
+    resources :users, :only => [:show, :update]
   end 
   
   get ':username/post/:post-title', to: 'blogs#post'

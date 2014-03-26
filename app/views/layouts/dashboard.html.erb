@@ -44,6 +44,10 @@
 
 		<%= yield %>
 	</div>
+	<script> $(document).ready(function(){
+		  Classable.initialize();		
+	});
+	</script>
 	<script type="content" id="csrf-token"><%= form_authenticity_token %></script>
 </body>
 </html>

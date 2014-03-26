@@ -41,8 +41,7 @@ Classable.Views.DashboardView = Backbone.View.extend({
 	},
 	
 	showUserMenu: function() {
-		var auth_token = $('#csrf-token').html();
-		var userMenuView = new Classable.Views.UserMenuView({ token: auth_token });
+		var userMenuView = new Classable.Views.UserMenuView();
 		$('#user-menu-area').html(userMenuView.render().$el);
 	},
 	

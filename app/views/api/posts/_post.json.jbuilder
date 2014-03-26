@@ -3,6 +3,7 @@ json.(post, :id, :custom_url, :type, :source_link, :publish_date,
 
 json.author do
   json.username post.user.username
+  json.avatar post.user.avatar.url(:thumb)
 end
 
 if(post.type == 'Image')
