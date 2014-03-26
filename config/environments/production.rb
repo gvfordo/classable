@@ -78,7 +78,7 @@ Tumblr::Application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => ENV["AWS_DEV_BUCKET"],
+      :bucket => ENV["AWS_PROD_BUCKET"],
       :access_key_id => ENV["AWS_ACCESS_KEY"],
       :secret_access_key => ENV["AWS_SECRET_KEY"],
       :s3_host_name => 's3-us-west-1.amazonaws.com'
