@@ -81,7 +81,7 @@ Tumblr::Application.configure do
       :bucket => ENV["AWS_PROD_BUCKET"],
       :access_key_id => ENV["AWS_ACCESS_KEY"],
       :secret_access_key => ENV["AWS_SECRET_KEY"],
-      :s3_host_name => 's3-us-west-1.amazonaws.com'
+      :s3_host_name => 's3-us-west-2.amazonaws.com'
     }
   }
 
