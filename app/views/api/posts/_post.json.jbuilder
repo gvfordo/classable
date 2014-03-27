@@ -1,4 +1,4 @@
-json.(post, :id, :custom_url, :type, :source_link, :publish_date,
+json.(post, :id, :custom_url, :type, :source_link, :publish_date, :link,
       :quote, :title, :post_text)
 
 json.author do

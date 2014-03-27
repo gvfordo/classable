@@ -42,10 +42,10 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 				return this.renderQuotePost(post);
 				break;
 			case "Link":
-				//render LinkPostShow
+				return this.renderLinkPost(post);
 				break;
 			case "Chat":
-				//render ChatPostShow
+				return this.renderChatPost(post);
 				break;
 			case "Audio": 
 				//render AudioPostShow
@@ -71,6 +71,16 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 	renderQuotePost: function(post) {
 		var showQuoteView = new Classable.Views.QuotePostView({ model: post });
 		return showQuoteView.render().$el;
+	},
+	
+	renderLinkPost: function(post) {
+		var showLinkView = new Classable.Views.LinkPostView({ model: post });
+		return showLinkView.render().$el;
+	},
+	
+	renderChatPost: function(post) {
+		var showChatView = new Classable.Views.ChatPostView({ model: post });
+		return showChatView.render().$el;
 	}
 	
 	

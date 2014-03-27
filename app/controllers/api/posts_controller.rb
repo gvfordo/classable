@@ -31,7 +31,7 @@ class Api::PostsController < ApplicationController
     subscribed_to = current_user.subscription_users.pluck(:subscribee_id)
     subscribed_to.push(current_user.id)
     @posts = Post.includes(:user, :pictures).order(:created_at).where(:user_id => subscribed_to)
-    @posts.reverse!
+    @posts
     render 'api/posts/index'
   end
   

@@ -83,8 +83,8 @@
 	width: 12.7%;
 }
 
-.post-type-text {
-
+.post-icon-text {
+	font-weight: bold;
 }
 
 .post-type-spacer {
@@ -114,6 +114,38 @@
 	bottom: 8px;
 }
 
+.post-type:hover .post-icon-wrapper {
+	bottom: 8px;
+};
+
+.post-type:hover .post-icon-text {
+	color: rgb(76, 189, 211);
+};
+
+.post-type:hover .fa-camera {
+	color: #3AC75C;
+};
+
+.post-type:hover .fa-quote-left {
+	color: #E2678E;
+};
+
+.post-type:hover .fa-link {
+	color: #DBA738;
+};
+
+.post-type:hover .fa-comment {
+	color: #F76969;
+};
+
+.post-type:hover .fa-music {
+	color: #BC7CE7;
+};
+
+.post-type:hover .fa-video-camera {
+	color: #D6EC2E;
+};
+
 .text-post-icon {
 	font-size: 1.2em;
 
@@ -136,6 +168,29 @@
 		color: #1685C4;
 	}
 }
+
+.feed-link-text {
+	text-align: center;
+	height: 100px;
+	padding-top: 35px;
+	background-color: #46B484;
+	font-size: 1.5em;
+	font-weight: bold;
+	color: white;
+	
+	&:hover {
+	 background-color: #4F886F;
+	}
+}
+
+.chat-post-text {
+	font-family: courier, serif;
+}
+
+.feed-link:hover {
+	text-decoration: none;
+};
+
 
 .user-menu-item:last-child {
  margin: 5px 0px 0px 0px;	

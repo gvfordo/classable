@@ -1,17 +1,11 @@
 <form>
 <div class="fright cancel-post large-text"><span class="glyphicon glyphicon-remove-circle"></span></div>
-<div class="new-post-title">New Quote Post.</div>
+<div class="new-post-title">New Link Post.</div>
 
 	<div id="post-errors"></div>
-	<input type="hidden" name="post[type]" value="Quote">
+	<input type="hidden" name="post[type]" value="Link">
 		
-	<textarea class="form-control" name="post[quote]" value="" placeholder="Write the quote here..."></textarea>	
-	
-	<br>
-	<div class="input-group">
-		<span class="input-group-addon glyphicon glyphicon-user"></span>
-		<input class="form-control" type="text" name="post[source_link]" placeholder="Source (optional)" value="">
-  </div>
+	<input type="text" class="form-control" name="post[link]" value="" placeholder="Add your link here" />	
 	
 	<div class="optional-text" style="display:none">
 		<div class="input-group">
@@ -33,6 +27,13 @@
 			<span class="input-group-addon glyphicon glyphicon-globe"></span>
 			<input class="form-control" type="text" name="post[custom_url]" value="" placeholder="eg. /Amazing-Blog-Post" id="post-url">
 		</div>
+
+	
+		<br>
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-link"></span>
+			<input class="form-control" type="text" name="post[source_link]" placeholder="Source Link" value="">
+    </div>
 		
 		<br>
 		<div class="input-group">
