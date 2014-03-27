@@ -10,6 +10,9 @@
 		<div class="post-author"><a href="/<%= user %>"><%= user %></a></div>
 		<h4><%= post.escape('title') %></h4>
 		<div class="post-md-body"><%= marked(post.escape('post_text')) %></div>
+	  <% if (post.get('source_link').length > 0) { %>
+		<div class="source link">Source: <%= post.escape('source') %></div>
+		<% } %>
 	</div>
 <div class="clear-div"></div>
 </div>

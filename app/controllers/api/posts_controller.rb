@@ -1,6 +1,7 @@
 
 class Api::PostsController < ApplicationController
   before_action :authenticate
+  before_action :require_author, :only => [:update, :destroy]
 
 
   def create
@@ -24,7 +25,14 @@ class Api::PostsController < ApplicationController
   end
   
   def edit
-    
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      render 'api/posts/show'
+    else
+      @post.errors
+      render :json => @post.errors.full_messages, :status => :unprocessable_entity
+    end
+
   end
   
   def index
@@ -61,6 +69,14 @@ class Api::PostsController < ApplicationController
 
 
   private
+  
+  def require_author
+    unless current_user && Post.find(params[:id]).user_id == current_user.id
+      raise User::NotAuthorized 
+    end
+    
+  end
+  
   
   def post_params
     params.require(:post).permit(:custom_url, :source_link, :publish_date, 

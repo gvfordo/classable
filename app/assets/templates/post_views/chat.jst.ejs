@@ -8,6 +8,9 @@
 	<div class="post-background">
 		<div class="post-author"><a href="/<%= post.get('author').username %>"><%= post.get('author').username %></a></div>
 		<div class="post-md-body chat-post-text"><%= marked(post.escape('post_text')) %></div>
+	  <% if (post.get('source_link').length > 0) { %>
+		<div class="source-link">Source: <%= post.escape('source') %></div>
+		<% } %>
 	</div>
 <div class="clear-div"></div>
 </div>

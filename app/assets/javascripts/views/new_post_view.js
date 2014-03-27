@@ -72,7 +72,10 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		$submitButton = $('.btn-success')
 		$submitButton.prop('disabled', true)
 		that = this;
-		debugger
+		if ($data['post']['type'] == "Video") {
+			debugger
+			$data['post']['media_url'] = this.youtubeLink($data['post']['media_url'])
+		}
 		this.model.save($data, {
 			success: function(response) {
 				Classable.feed.add(that.model);
@@ -87,6 +90,11 @@ Classable.Views.NewPostView = Backbone.View.extend({
 			}
 			
 		})
+	},
+	
+	youtubeLink: function(url) {
+		var url_end = url.length
+		return url.substring(16, url_end)
 	},
 	
 	textOptions: function(show) {

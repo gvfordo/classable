@@ -8,7 +8,12 @@
 	<div class="post-background">
 		<div class="post-author"><a href="/<%= post.get('author').username %>"><%= post.get('author').username %></a></div>
 		<span class="feed-quote-text"><%= post.escape('quote') %></span>
-		<div class="post-md-body"><%= marked(post.escape('post_text')) %></div>
+		<div class="post-md-body"><%= marked(post.escape('post_text')) %>
+		<br>
+	  <% if (post.get('source_link').length > 0) { %>
+		<span class="quote-source">-- <%= post.escape('source') %></span>
+		<% } %>
+		</div>
 	</div>
 <div class="clear-div"></div>
 </div>

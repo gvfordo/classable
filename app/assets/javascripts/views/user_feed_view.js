@@ -31,8 +31,6 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 	renderedPostType: function(post) {
 		switch(post.get('type')) {
 			case "Text":
-				//render TextPostShow
-				// that.$el.append(that.renderTextPost(post));
 				return this.renderTextPost(post);
 				break;
 			case "Image":
@@ -48,13 +46,13 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 				return this.renderChatPost(post);
 				break;
 			case "Audio": 
-				//render AudioPostShow
+				return this.renderAudioPost(post);
 				break;
 			case "Video":
-				//render VideoPostShow
+				return this.renderVideoPost(post);
 				break;
 			default:
-				console.log("Hit the default in the post switch statement.  That probably shouldn't have happened");
+				break;
 		}
 	},
 	
@@ -81,6 +79,16 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 	renderChatPost: function(post) {
 		var showChatView = new Classable.Views.ChatPostView({ model: post });
 		return showChatView.render().$el;
+	},
+	
+	renderAudioPost: function(post) {
+		var showAudioView = new Classable.Views.AudioPostView({ model: post });
+		return showAudioView.render().$el;
+	},
+	
+	renderVideoPost: function(post) {
+		var showVideoView = new Classable.Views.VideoPostView({ model: post });
+		return showVideoView.render().$el;
 	}
 	
 	

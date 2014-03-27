@@ -1,0 +1,41 @@
+<form>
+<div class="fright cancel-post large-text"><span class="glyphicon glyphicon-remove-circle"></span></div>
+<div class="new-post-title">New Video Post.</div>
+
+	<div id="post-errors"></div>
+	<input type="hidden" name="post[type]" value="Video">
+		
+	<input id="temp" type="text" class="form-control" name="post[media_url]" value="" placeholder="Paste YouTube Link Here: eg.  http://youtu.be/lsl3d0skdjf" />	
+	
+	<div class="optional-text" style="display:none">
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-font"></span>
+			<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="">
+		</div>
+ 
+	<br>
+
+
+	<textarea class="form-control" name="post[post_text]" value="" placeholder="Write your post's text here..."></textarea>
+  </div>
+	<br>
+	<button class="btn btn-warning toggle-options fright">Show Advanced Options</button>
+	<div id="adv-opt-clear-div" class="clear-div" style="display: none;"></div>
+	<div class="advanced-options" style="display: none;">
+	<br>
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-globe"></span>
+			<input class="form-control" type="text" name="post[custom_url]" value="" placeholder="eg. /Amazing-Blog-Post" id="post-url">
+		</div>
+		
+		<br>
+		<div class="input-group">
+			<span class="input-group-addon glyphicon glyphicon-calendar"></span>
+			<input class="form-control" type="date" name="post[publish_date]" value="" placeholder="Publish Date">
+		</div>
+	<br>
+	</div>
+
+	
+	<button class="btn btn-success">Create Post</button>
+</form>

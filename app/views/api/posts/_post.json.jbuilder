@@ -1,5 +1,5 @@
-json.(post, :id, :custom_url, :type, :source_link, :publish_date, :link,
-      :quote, :title, :post_text)
+json.(post, :id, :custom_url, :type, :source_link, :media_url, :publish_date, 
+      :link, :quote, :title, :post_text)
 
 json.author do
   json.username post.user.username

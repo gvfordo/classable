@@ -1,0 +1,18 @@
+<div class="col-md-2">
+
+	<img src="<%= post.get('author').avatar %>" class="img-circle profile-image">
+</div>
+			
+<div class="col-md-10 feed-post">
+	<div class="left-triangle"></div>
+	<div class="post-background">
+		<div class="post-author"><a href="/<%= _.escape(post.get('author').username) %>"><%= post.get('author').username %></a></div>
+		<div class="feed-video">
+		
+			<iframe src="http://embed.spotify.com/?uri=<%= post.escape('media_url') %>" width="640" height="80" frameborder="0" allowtransparency="true"></iframe>
+			</div>
+		<!-- <div class="post-md-body"><%= marked(post.escape('post_text')) %></div> -->
+	</div>
+<div class="clear-div"></div>
+</div>
+
