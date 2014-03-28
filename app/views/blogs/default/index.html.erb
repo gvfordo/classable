@@ -99,9 +99,10 @@
                 background-color: {LinkColor};
             }
             
-            .header-image {
-                background-image: url('http://placekitten.com/g/1600/400');
-								opacity: 0.3;
+            .header-image-wrapper {
+							/* Maybe make this a background color? */
+							background-color: #cf4c2a;
+							height: 200px;
             }
 
             .user-avatar {
@@ -121,8 +122,6 @@
                 }
             }
 
-            /* Custom CSS */
-            {CustomCSS}
         </style>
     </head>
     <body data-urlencoded-name="{URLEncodedName}" class="{select:Layout}{block:IndexPage} index-page{/block:IndexPage}{block:PermalinkPage} permalink{/block:PermalinkPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}">
@@ -139,19 +138,18 @@
                 {block:ShowAvatar}avatar-style-{AvatarShape}{/block:ShowAvatar}">
 
                 <header id="header">
-                    <%# if @blog['showHeaderImage'] && 													  !@blog['showHeaderImage'].empty? %>
 										
                     <div class="header-image-wrapper">
-                        <a href="/" class="header-image" data-bg-image="http://placekitten.com/g/1600/400"></a>
+                        <a href="/<%= @user.username %>" class="header-image"></a>
                     </div>
                     <%# end %>
 
                     <div class="blog-title content">
                         <figure class="avatar-wrapper">
-                            <a href="/<%= @user.username %>" style="background-image: url(<%= @user['avatar'] ? @user.avatar(:thumb) : 'http://placekitten.com/g/100/100' %>)" class="user-avatar"><img src=" " alt="" class="print-only invisible"></a>
+                            <a href="/<%= @user.username %>" style="background-image: url(<%= @user.avatar(:thumb)%>)" class="user-avatar"><img src=" " alt="" class="print-only invisible"></a>
                         </figure>
                         <% unless @blog['title'].empty? %>
-                        <h1><a href="/"><%= @blog['title'] %></a></h1>
+                        <h1><a href="/<%= @user.username %>"><%= @blog['title'] %></a></h1>
                         <% end %>
 												
 												<% if logged_in? %>
@@ -176,7 +174,7 @@
                 </header>
             </div>
            
-            <section id="posts" class="content clearfix {block:HideTitle}{block:HideDescription}no-title-desc {/block:HideDescription}{/block:HideTitle}{block:HideHeaderImage}no-image {/block:HideHeaderImage} avatar-style-{AvatarShape}">
+            <section id="posts" class="content clearfix">
     
                 <div data-page-id="{CurrentPage}">
                     <% @posts.each do |post| %>
@@ -188,8 +186,7 @@
                                         
                                             <h2><a href="{Permalink}"><%= post.title %></a></h2>
                                          
-                                            <div class="body-text">
-                                                <%= post.post_text %>
+                                            <div class="body-text"><%= post.post_text %>
                                             </div>
                                         
                                       
@@ -200,12 +197,24 @@
                                         <figure class="" data-photo-width="">
                                             <div class="photo-wrapper">
                                                 <div class="photo-wrapper-inner">
-                                                    <img src="<%= picture.image.url(:large) %>" alt="" width="" height="">
+                                                    <img src="<%= picture.image.url(:large) %>" alt="" width="" height=""><br>
                                                 </div>
                                             </div>
                                  
-                                        </figure>
+                                        </figure><br>
+																				
+                                     
+																				
 																				<% end %>
+																				
+                                        <% unless post.title.empty? %> 
+ 																			 <h2><a href="{Permalink}"><%= post.title %></a></h2>
+ 																			 <% end %>
+                                       
+ 																			 <% unless post.post_text.empty? %>
+                                         <div class="body-text"><%= post.post_text %>
+                                         </div>
+ 																				<% end %>
                                  
 
                                       <% elsif post.type == "Quote" %>
@@ -222,49 +231,40 @@
                                         <% elsif post.type == "Link" %>
 																				
                                         <div class="link-wrapper">
-                                            <h2><a {Target} href="{URL}">{Name}</a></h2>
+                                            <h2><a href="<%= post.link %>"><%= post.link %></a></h2>
                                         </div>
-                                        {block:Description}
-                                        <div class="caption">
-                                            {Description}
-                                        </div>
-                                        {/block:Description}
+                                       
                                         
 																				<% elsif post.type == "Chat" %>
 
 
                                        
-                                        {block:Title}<h2><a href="{Permalink}">{Title}</a></h2>{/block:Title}
-                                            <ul class="conversation">
-                                            {block:Lines}
-                                                <li class="chat-{Alt}">{block:Label}<span class="label">{Label}</span>{/block:Label} {Line}</li>
-                                            {/block:Lines}
-                                            </ul>
+                                       <% unless post.title && !post.title.empty? %>
+																			 	<h2><a href="{Permalink}"><%= post.title %></a></h2>
+																				<% end %>
+	                                         <div class="body-text"><%= post.post_text %>
+	                                         </div>
                                        
 																			 <% elsif post.type == "Audio" %>
 
 
-                                        <div class="audio_container">
-                                            {block:AudioEmbed}
-                                                {AudioEmbed color="white"}
-                                            {/block:AudioEmbed}
-                                        </div>
-                                        {block:Caption}
+                                       	<iframe src="http://embed.spotify.com/?uri=<%= post.media_url %>" width="640" height="80" frameborder="0" allowtransparency="true"></iframe>
+                                       
                                         <div class="caption">
-                                            {Caption}
+                                           <!-- post text here? -->
                                         </div>
-                                        {/block:Caption}
+                                       
                                        
 																			  <% elsif post.type == "Video" %>                        
                                         <figure {block:Caption}class="with-caption"{/block:Caption}>
-                                            <div class="video-wrapper">
-                                                {Video-700}
-                                            </div>
-                                            {block:Caption}
+                                         
+                                               	<iframe width="640" height="360" src="//www.youtube.com/embed/<%= post.media_url %>" frameborder="0" allowfullscreen></iframe>
+                                           
+                                           
                                             <figcaption class="caption">
-                                                {Caption}
+                                              <!-- post text here? -->
                                             </figcaption>
-                                            {/block:Caption}
+                                          
                                         </figure>
                                         <% end %>
 
@@ -362,7 +362,7 @@
                 </div>
             </section>
             <footer id="footer" class="content clearfix">
-                {block:IndexPage}
+                <!-- handle pagination  >{block:IndexPage}
                     {block:Pagination}
                     <div id="pagination">
                         {block:PreviousPage}
@@ -374,7 +374,7 @@
                         <div class="loader"></div>
                     </div>
                     {/block:Pagination}
-                {/block:IndexPage}
+                {/block:IndexPage} -->
             </footer>
         </section>
 				

@@ -4,6 +4,7 @@ json.(post, :id, :custom_url, :type, :source_link, :media_url, :publish_date,
 json.author do
   json.username post.user.username
   json.avatar post.user.avatar.url(:thumb)
+  json.id post.user.id
 end
 
 if(post.type == 'Image')

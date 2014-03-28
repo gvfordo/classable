@@ -1,1 +1,1 @@
-json.partial!("/api/posts/post", :post => @post, :text => @text)
+json.partial!("/api/posts/post", :post => @post)

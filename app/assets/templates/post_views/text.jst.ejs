@@ -6,14 +6,21 @@
 <div class="col-md-10 feed-post">
 	<div class="left-triangle"></div>
 	<div class="post-background">
-		<% var user = _.escape(post.get('author').username) %>
-		<div class="post-author"><a href="/<%= user %>"><%= user %></a></div>
+		<% var username = _.escape(post.get('author').username) %>
+		<div class="post-author"><a href="/<%= username %>"><%= username %></a></div>
 		<h4><%= post.escape('title') %></h4>
 		<div class="post-md-body"><%= marked(post.escape('post_text')) %></div>
 	  <% if (post.get('source_link').length > 0) { %>
 		<div class="source link">Source: <%= post.escape('source') %></div>
 		<% } %>
 	</div>
+	<% if (user.id === post.get('author').id) { %>
+	  <div class="post-controls">
+			<a href="#" class="delete-post" data-id="<%= post.id %>">DELETE</a>
+			 - 
+			<a href="#" class="edit-post" data-id="<%= post.id %>">EDIT</a>
+		</div>
+	<% } %>
 <div class="clear-div"></div>
 </div>
 

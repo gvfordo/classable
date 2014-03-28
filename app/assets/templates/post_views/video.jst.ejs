@@ -12,7 +12,15 @@
 				<iframe width="640" height="360" src="//www.youtube.com/embed/<%= post.escape('media_url') %>" frameborder="0" allowfullscreen></iframe>
 			</div>
 		<!-- <div class="post-md-body"><%= marked(post.escape('post_text')) %></div> -->
+	
 	</div>
+	<% if (user.id === post.get('author').id) { %>
+	  <div class="post-controls">
+			<a href="#" class="delete-post" data-id="<%= post.id %>">DELETE</a>
+			 - 
+			<a href="#" class="edit-post" data-id="<%= post.id %>">EDIT</a>
+		</div>
+	<% } %>
 <div class="clear-div"></div>
 </div>
 

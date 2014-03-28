@@ -5,7 +5,7 @@ Classable.Views.TextPostView = Backbone.View.extend({
 	},
 	
 	events: {
-		
+
 	},
 	
 	className: "row feed-row",
@@ -14,7 +14,9 @@ Classable.Views.TextPostView = Backbone.View.extend({
 	
 	
 	render: function() {
-		var renderedContent = this.template({ post: this.model });
+		var renderedContent = this.template({ 
+			post: this.model,
+		  user: Classable.user });
 		this.$el.html(renderedContent);
 		return this;
 	}

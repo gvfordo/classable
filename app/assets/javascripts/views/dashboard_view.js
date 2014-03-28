@@ -31,12 +31,12 @@ Classable.Views.DashboardView = Backbone.View.extend({
 	
 	newPost: function(event) {
 		event.preventDefault();
-		var postTemplate = $(event.currentTarget).data("type");
+		var template = $(event.currentTarget).data("type");
 		var newPost = new Classable.Models.Post();
 		var newPostView = new Classable.Views.NewPostView({ 
 			model: newPost,
-		  dashboard: this,
-		  postTemplate: postTemplate });
+		  parent: this,
+		  postTemplate: template });
 		this.$('#post-types').html(newPostView.render().$el);
 	},
 	

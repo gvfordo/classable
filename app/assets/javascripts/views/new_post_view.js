@@ -1,22 +1,23 @@
 Classable.Views.NewPostView = Backbone.View.extend({
 	
 	initialize: function(options) {
-		this.dashboard = options.dashboard;
+		this.parent = options.parent;
 		this.postTemplate = options.postTemplate;
 	},
 	
-	textTemplate: JST['new_posts/text'],
-	imageTemplate: JST['new_posts/image'],
-	quoteTemplate: JST['new_posts/quote'],
-	linkTemplate: JST['new_posts/link'],
-	chatTemplate: JST['new_posts/chat'],
-	audioTemplate: JST['new_posts/audio'],
-	videoTemplate: JST['new_posts/video'],
+	Text : JST['new_posts/text'],
+	Image : JST['new_posts/image'],
+	Quote : JST['new_posts/quote'],
+	Link : JST['new_posts/link'],
+	Chat : JST['new_posts/chat'],
+	Audio : JST['new_posts/audio'],
+	Video : JST['new_posts/video'],
 	
 	className: "new-post",
 	
 	events: {
-		"submit form" : "createPost",
+		"click .create-post" : "createPost",
+		"click .update-post" : "updatePost",
 		"click button.toggle-options" : "toggleOptions",
 		"click div.cancel-post" : "cancelPost",
 		"change #image-upload" : "handleFiles"
@@ -66,9 +67,34 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		this.$('.optional-text').show({ duration: 1000, effect: $.slideDown })
 	},
 	
+	updatePost: function(event) {
+		event.preventDefault();
+		$data = $('.post-form').serializeJSON();
+		$submitButton = $('.btn-success')
+		$submitButton.prop('disabled', true)
+		that = this;
+		if ($data['post']['type'] == "Video") {
+			debugger
+			$data['post']['media_url'] = this.youtubeLink($data['post']['media_url'])
+		}
+		this.model.save($data, {
+			success: function(response) {
+				that.parent.removeSubView(that);
+			},
+			
+			error: function(model, response) {
+				console.log(model);
+				console.log(response);
+				that.showErrors(response.responseJSON);
+				$submitButton.prop("disabled", false);
+			}
+			
+		})
+	},
+	
 	createPost: function(event) {
 		event.preventDefault();
-		$data = $(event.target).serializeJSON();
+		$data = $('.post-form').serializeJSON();
 		$submitButton = $('.btn-success')
 		$submitButton.prop('disabled', true)
 		that = this;
@@ -79,7 +105,7 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		this.model.save($data, {
 			success: function(response) {
 				Classable.feed.add(that.model);
-				that.dashboard.removeSubView(that);
+				that.parent.removeSubView(that);
 			},
 			
 			error: function(model, response) {
@@ -116,7 +142,7 @@ Classable.Views.NewPostView = Backbone.View.extend({
 	cancelPost: function(event) {
 		event.preventDefault();
 		// confirm cancelation?
-		this.dashboard.removeSubView(this);
+		this.parent.removeSubView(this);
 	},
 	
 	toggleOptions: function(event) {

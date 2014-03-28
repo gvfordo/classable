@@ -18,6 +18,13 @@
 		<div class="source-link">Source: <%= post.escape('source') %></div>
 		<% } %>
 	</div>
+	<% if (user.id === post.get('author').id) { %>
+	  <div class="post-controls">
+			<a href="#" class="delete-post" data-id="<%= post.id %>">DELETE</a>
+			 - 
+			<a href="#" class="edit-post" data-id="<%= post.id %>">EDIT</a>
+		</div>
+	<% } %>
 <div class="clear-div"></div>
 </div>
 

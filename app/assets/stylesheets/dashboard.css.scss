@@ -1,3 +1,4 @@
+$background: #4e5d6c;
 
 
 .image-post-frame {
@@ -32,7 +33,7 @@
 	position: relative;
 	border-top: 15px solid rgba(255, 255, 255, 0);
 	border-bottom: 15px solid rgba(255, 255, 255, 0);
-	border-right: 15px solid #4e5d6c;
+	border-right: 15px solid $background;
 	width: 0px;
 	height: 0px;
 	right: 15px;
@@ -55,7 +56,7 @@
 }
 
 .feed-post {
-	background-color: #4e5d6c;;
+	background-color: $background;;
 	background-clip: content-box;
 }
 
@@ -70,7 +71,7 @@
 /* Post Type Icons */
 
 #post-types {
-	background-color: #4e5d6c;;
+	background-color: $background;;
 	background-clip: content-box;
 }
 
@@ -232,4 +233,18 @@
 
 .user-settings {
 	width: 100%
+}
+
+.post-controls {
+	background-color: $background;
+	text-align: right;
+	padding: 0px 15px 5px 0px;
+}
+
+.delete-post, .edit-post {
+	color: #fff;
+}
+
+textarea.form-control {
+	height: 250px;
 }

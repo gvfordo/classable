@@ -1,6 +1,10 @@
-<form enctype="multipart/form-data">
+<form enctype="multipart/form-data" class="post-form">
 <div class="fright cancel-post large-text"><span class="glyphicon glyphicon-remove-circle"></span></div>
-<div class="new-post-title">New Image Post.</div>
+<div class="new-post-title"><% if (post.id) { %>
+	Edit Image Post.
+	<%} else {%>
+	New Image Post.
+	<%}%></div>
 
 	<div id="post-errors"></div>
 	
@@ -8,7 +12,7 @@
 		
 		
 
-			<div id="drag-file-upload">Click Upload or Drag Image Files Here</div>	
+			<!-- <div id="drag-file-upload">Click Upload or Drag Image Files Here </div>	-->
 	
 	  
 		<div class="fileUpload btn btn-primary btn-large">
@@ -28,11 +32,11 @@
 	 <!-- Title and Caption / PostText is optional for Image Posts.  Hidden until a photo is uploaded.  -->
 	<div class="optional-text" style="display: none;">		
 		<div class="input-group">
-			<span class="input-group-addon glyphicon glyphicon-font"></span>
-			<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="">
+			<span class="input-group-addon">Title</span>
+			<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="<% if (post.get('title')){ %><%=post.get('title') %><% }%>">
 		</div>
 		<br>
-		<textarea class="form-control" name="post[post_text]" value="" placeholder="Write your post's text here..."></textarea>
+		<textarea class="form-control" name="post[post_text]" value="" placeholder="Write your post's text here..."><% if (post.get('post_text')){ %><%=post.get('post_text') %><% }%></textarea>
 		<br>
 	</div>
 	<button class="btn toggle-options fright">Show Advanced Options</button>
@@ -59,6 +63,13 @@
 	<br>
 	</div>
 
-	
-	<button class="btn btn-success">Create Post</button>
+	<button class="btn btn-success <% if (post.id) { %>
+	update-post
+	<%} else {%>
+	create-post
+	<%}%>"><% if (post.id) { %>
+	Update Post
+	<%} else {%>
+	Create Post
+	<%}%></button>
 </form>

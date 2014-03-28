@@ -21,17 +21,14 @@ class Api::PostsController < ApplicationController
   end
   
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    render :json => @post
     
   end
   
   def edit
-    @post = Post.find(params[:id])
-    if @post.update_attributes(post_params)
-      render 'api/posts/show'
-    else
-      @post.errors
-      render :json => @post.errors.full_messages, :status => :unprocessable_entity
-    end
+   
 
   end
   
@@ -64,7 +61,13 @@ class Api::PostsController < ApplicationController
   end
   
   def update
-    
+    @post = Post.find(params[:id])
+    if @post.update_attributes(post_params)
+      render 'api/posts/show'
+    else
+      @post.errors
+      render :json => @post.errors.full_messages, :status => :unprocessable_entity
+    end
   end
 
 

@@ -1,6 +1,10 @@
-<form>
-<div class="fright cancel-post large-text"><span class="glyphicon glyphicon-remove-circle"></span></div>
-<div class="new-post-title">New Text Post.</div>
+<form class="post-form">
+<div class="fright cancel-post large-text"><span class="glyphicon glyphicon-remove-circle"></span></div><% debugger %>
+<div class="new-post-title"><% if (post.id) { %>
+	Edit Text Post.
+	<%} else {%>
+	New Text Post.
+	<%}%></div>
 
 	<div id="post-errors"></div>
 	<input type="hidden" name="post[type]" value="Text">
@@ -8,8 +12,8 @@
 		
 	
 			<div class="input-group">
-				<span class="input-group-addon glyphicon glyphicon-font"></span>
-				<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="">
+				<span class="input-group-addon">Title</span>
+				<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="<% if (post.get('title')){ %><%=post.get('title') %><% }%>">
 			</div>
 	  </div>
 	<br>
@@ -32,7 +36,7 @@
 	        <span class="button-link" accesskey="l" title="Insert link"><img src="/assets/link.png" /></span>
 	        <span class="button-image" accesskey="p" title="Insert picture/image"><img src="/assets/picture.png" /></span>
 	    </div>
-	    <textarea class="area form-control" name="post[post_text]" placeholder="Write your post here!  This editor supports the markdown markup language.  Feel free to * write in markdown * or use the editors buttons to help you out."></textarea>
+	    <textarea class="area form-control" name="post[post_text]" placeholder="Write your post here!  This editor supports the markdown markup language.  Feel free to * write in markdown * or use the editors buttons to help you out."><% if (post.get('post_text')){ %><%=post.get('post_text') %><% }%></textarea>
 	</div>
 	
 	<!-- Initialize the edtior -->
@@ -69,5 +73,13 @@
 	</div>
 
 	
-	<button class="btn btn-success">Create Post</button>
+	<button class="btn btn-success <% if (post.id) { %>
+	update-post
+	<%} else {%>
+	create-post
+	<%}%>"><% if (post.id) { %>
+	Update Post
+	<%} else {%>
+	Create Post
+	<%}%></button>
 </form>

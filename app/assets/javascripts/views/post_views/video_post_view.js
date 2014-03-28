@@ -14,7 +14,9 @@ Classable.Views.VideoPostView = Backbone.View.extend({
 	
 	
 	render: function() {
-		var renderedContent = this.template({ post: this.model });
+		var renderedContent = this.template({ 
+			post: this.model,
+		  user: Classable.user });
 		this.$el.html(renderedContent);
 		return this;
 	}

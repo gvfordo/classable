@@ -11,10 +11,17 @@
 		<div class="post-md-body"><%= marked(post.escape('post_text')) %>
 		<br>
 	  <% if (post.get('source_link').length > 0) { %>
-		<span class="quote-source">-- <%= post.escape('source') %></span>
+		<span class="quote-source">-- <%= post.escape('source_link') %></span>
 		<% } %>
 		</div>
 	</div>
+	<% if (user.id === post.get('author').id) { %>
+	  <div class="post-controls">
+			<a href="#" class="delete-post" data-id="<%= post.id %>">DELETE</a>
+			 - 
+			<a href="#" class="edit-post" data-id="<%= post.id %>">EDIT</a>
+		</div>
+	<% } %>
 <div class="clear-div"></div>
 </div>
 

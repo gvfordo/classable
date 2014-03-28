@@ -1,12 +1,16 @@
-<form>
+<form class="post-form">
 <div class="fright cancel-post large-text"><span class="glyphicon glyphicon-remove-circle"></span></div>
-<div class="new-post-title">New Chat Post.</div>
+<div class="new-post-title"><% if (post.id) { %>
+	Edit Chat Post.
+	<%} else {%>
+	New Chat Post.
+	<%}%></div>
 
 	<div id="post-errors"></div>
 	<input type="hidden" name="post[type]" value="Chat">
 		
-	<textarea id="chat-text-area" class="form-control" name="post[post_text]" value="" placeholder="">Hot Dog Vendor: What would you like?
-Buddhist Monk: Make me one with everything. </textarea>	
+	<textarea id="chat-text-area" class="form-control" name="post[post_text]" value="" placeholder=""><% if (post.get('post_text')){ %><%=post.get('post_text') %><% } else { %>Hot Dog Vendor: What would you like?
+Buddhist Monk: Make me one with everything.<% } %></textarea>	
 
 	<br>
 	<button class="btn btn-warning toggle-options fright">Show Advanced Options</button>
@@ -33,19 +37,28 @@ Buddhist Monk: Make me one with everything. </textarea>
 	</div>
 
 	
-	<button class="btn btn-success">Create Post</button>
+	<button class="btn btn-success <% if (post.id) { %>
+	update-post
+	<%} else {%>
+	create-post
+	<%}%>"><% if (post.id) { %>
+	Update Post
+	<%} else {%>
+	Create Post
+	<%}%></button>
 </form>
-
+<% if (post.id === undefined){ %>
 <script>
 	$(function () {
-		var defaultText = true
-		var $chat = $('#chat-text-area');
-		$chat.focus(function(){
-			if (defaultText) {
-				$chat.val('');
-				defaultText = false
-			}
-			
-		});
+	
+			var defaultText = true
+			var $chat = $('#chat-text-area');
+			$chat.focus(function(){
+				if (defaultText) {
+					$chat.val('');
+					defaultText = false
+				}		
+			});
 	});
 </script>
+<% } %>
