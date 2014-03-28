@@ -30,18 +30,15 @@ Classable.Views.AccountSettingsView = Backbone.View.extend({
 		var files = event.target.files
 		
 		for(var i = 0; i < files.length; i++) {
-
-			console.log(files[i]);
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				// This loses the file name along the way :(
-				console.log(e.target.result)
+
 				var $img = $('#user-avatar-image')
 				var $input = $('<input type="hidden" name="user[avatar]">')
 				$input.val(e.target.result);
 				$img.attr("src", this.result);
 				that.$('#avatar-area').append($input);
-				console.log(this.result)
 			}
 			reader.readAsDataURL(files[i]);
 	
@@ -53,7 +50,7 @@ Classable.Views.AccountSettingsView = Backbone.View.extend({
 		$data = $(event.target).serializeJSON();
 		this.user.save($data, {
 			success: function () {
-				console.log("Hot damn that worked!")
+				Backbone.history.navigate("/", { trigger: true })
 			}
 		})
 	}
