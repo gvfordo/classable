@@ -13,7 +13,7 @@
 	
 			<div class="input-group">
 				<span class="input-group-addon">Title</span>
-				<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="<% if (post.get('title')){ %><%=post.get('title') %><% }%>">
+				<input class="form-control"  type="text" name="post[title]" placeholder="Write your post's title here..." value="<% if (post.escape('title')){ %><%=post.escape('title') %><% }%>">
 			</div>
 	  </div>
 	<br>
@@ -36,7 +36,7 @@
 	        <span class="button-link" accesskey="l" title="Insert link"><img src="/assets/link.png" /></span>
 	        <span class="button-image" accesskey="p" title="Insert picture/image"><img src="/assets/picture.png" /></span>
 	    </div>
-	    <textarea class="area form-control" name="post[post_text]" placeholder="Write your post here!  This editor supports the markdown markup language.  Feel free to * write in markdown * or use the editors buttons to help you out."><% if (post.get('post_text')){ %><%=post.get('post_text') %><% }%></textarea>
+	    <textarea class="area form-control" name="post[post_text]" placeholder="Write your post here!  This editor supports the markdown markup language.  Feel free to * write in markdown * or use the editors buttons to help you out."><% if (post.escape('post_text')){ %><%=post.escape('post_text') %><% }%></textarea>
 	</div>
 	
 	<!-- Initialize the edtior -->
@@ -54,20 +54,20 @@
 	<br>
 		<div class="input-group">
 			<span class="input-group-addon glyphicon glyphicon-globe"></span>
-			<input class="form-control" type="text" name="post[custom_url]" value="" placeholder="eg. /Amazing-Blog-Post" id="post-url">
+			<input class="form-control" type="text" name="post[custom_url]" value="<% if (post.escape('custom_url')){ %><%=post.escape('custom_url') %><% }%>" placeholder="eg. /Amazing-Blog-Post" id="post-url">
 		</div>
 
 	
 		<br>
 		<div class="input-group">
 			<span class="input-group-addon glyphicon glyphicon-link"></span>
-			<input class="form-control" type="text" name="post[source_link]" placeholder="Source Link" value="">
+			<input class="form-control" type="text" name="post[source_link]" placeholder="Source Link" value="<% if (post.escape('source_link')){ %><%=post.escape('source_link') %><% }%>">
     </div>
 		
 		<br>
 		<div class="input-group">
 			<span class="input-group-addon glyphicon glyphicon-calendar"></span>
-			<input class="form-control" type="date" name="post[publish_date]" value="" placeholder="PUBLISH DATE">
+			<input class="form-control" type="date" name="post[publish_date]" value="<% if (post.escape('publish_date')){ %><%=post.escape('publish_date') %><% }%>" placeholder="PUBLISH DATE">
 		</div>
 	<br>
 	</div>

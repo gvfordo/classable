@@ -44,24 +44,24 @@
 	<div class="advanced-options" style="display:none">
 	<div class="clear-div"></div>
 	<br>
-		<div class="input-group">
-			<span class="input-group-addon glyphicon glyphicon-globe"></span>
-			<input class="form-control" type="text" name="post[custom_url]" value="" placeholder="eg. /Amazing-Blog-Post" id="post-url">
-		</div>
+			<div class="input-group">
+				<span class="input-group-addon glyphicon glyphicon-globe"></span>
+				<input class="form-control" type="text" name="post[custom_url]" value="<% if (post.escape('custom_url')){ %><%=post.escape('custom_url') %><% }%>" placeholder="eg. /Amazing-Blog-Post" id="post-url">
+			</div>
 
 	
-		<br>
-		<div class="input-group">
-			<span class="input-group-addon glyphicon glyphicon-link"></span>
-			<input class="form-control" type="text" name="post[source_link]" placeholder="Source Link" value="">
-    </div>
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon glyphicon glyphicon-link"></span>
+				<input class="form-control" type="text" name="post[source_link]" placeholder="Source Link" value="<% if (post.escape('source_link')){ %><%=post.escape('source_link') %><% }%>">
+	    </div>
 		
+			<br>
+			<div class="input-group">
+				<span class="input-group-addon glyphicon glyphicon-calendar"></span>
+				<input class="form-control" type="date" name="post[publish_date]" value="<% if (post.escape('publish_date')){ %><%=post.escape('publish_date') %><% }%>" placeholder="PUBLISH DATE">
+			</div>
 		<br>
-		<div class="input-group">
-			<span class="input-group-addon glyphicon glyphicon-calendar"></span>
-			<input class="form-control" type="date" name="post[publish_date]" value="" placeholder="PUBLISH DATE">
-		</div>
-	<br>
 	</div>
 
 	<button class="btn btn-success <% if (post.id) { %>
