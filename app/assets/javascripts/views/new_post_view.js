@@ -20,7 +20,8 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		"click .update-post" : "updatePost",
 		"click button.toggle-options" : "toggleOptions",
 		"click div.cancel-post" : "cancelPost",
-		"change #image-upload" : "handleFiles"
+		"change #image-upload" : "handleFiles",
+		"keyup input.audio-input" : "audioInput"
 	},
 	
 	render: function() {
@@ -31,7 +32,6 @@ Classable.Views.NewPostView = Backbone.View.extend({
 	},
 	
 	activateEditor: function() {
-		debugger
 		this.$('.editor').griffinEditor();
 	},
 	
@@ -44,11 +44,9 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		
 		for(var i = 0; i < files.length; i++) {
 
-			console.log(files[i]);
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				// This loses the file name along the way :(
-				console.log(e.target.result)
 				var $img = $('<img class="img-preview" />')
 				var $input = $('<input type="hidden" name="post[pictures_attributes][][image]">')
 				$input.val(e.target.result);
@@ -56,7 +54,6 @@ Classable.Views.NewPostView = Backbone.View.extend({
 				that.$('#uploaded-images').append($img);
 				that.$('#uploaded-images').append($input);
 				that.showTextOptions();
-				console.log(this.result)
 			}
 			reader.readAsDataURL(files[i]);
 	
@@ -83,8 +80,6 @@ Classable.Views.NewPostView = Backbone.View.extend({
 			},
 			
 			error: function(model, response) {
-				console.log(model);
-				console.log(response);
 				that.showErrors(response.responseJSON);
 				$submitButton.prop("disabled", false);
 			}
@@ -99,7 +94,6 @@ Classable.Views.NewPostView = Backbone.View.extend({
 		$submitButton.prop('disabled', true)
 		that = this;
 		if ($data['post']['type'] == "Video") {
-			debugger
 			$data['post']['media_url'] = this.youtubeLink($data['post']['media_url'])
 		}
 		this.model.save($data, {
@@ -109,8 +103,6 @@ Classable.Views.NewPostView = Backbone.View.extend({
 			},
 			
 			error: function(model, response) {
-				console.log(model);
-				console.log(response);
 				that.showErrors(response.responseJSON);
 				$submitButton.prop("disabled", false);
 			}

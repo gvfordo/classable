@@ -39,9 +39,10 @@
 		<textarea class="form-control" name="post[post_text]" value="" placeholder="Write your post's text here..."><% if (post.get('post_text')){ %><%=post.get('post_text') %><% }%></textarea>
 		<br>
 	</div>
-	<button class="btn toggle-options fright">Show Advanced Options</button>
+	<button class="btn btn-warning toggle-options fright">Show Advanced Options</button>
 	<div id="adv-opt-clear-div" class="clear-div hidden"></div>
-	<div class="advanced-options hidden">
+	<div class="advanced-options" style="display:none">
+	<div class="clear-div"></div>
 	<br>
 		<div class="input-group">
 			<span class="input-group-addon glyphicon glyphicon-globe"></span>

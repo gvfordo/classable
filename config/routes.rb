@@ -11,8 +11,8 @@ Tumblr::Application.routes.draw do
     resources :users, :only => [:show, :update]
   end 
   
-  get ':username/post/:post-title', to: 'blogs#post'
-  get ':username/page/:page-title', to: 'blogs#page'
+  get ':username/post/:post_title', to: 'blogs#post'
+  get ':username/page/:page_title', to: 'blogs#page'
   get ':username', to: 'blogs#index'
   
   # The priority is based upon order of creation: first created -> highest priority.

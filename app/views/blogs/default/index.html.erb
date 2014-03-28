@@ -177,6 +177,7 @@
             <section id="posts" class="content clearfix">
     
                 <div data-page-id="{CurrentPage}">
+									<% @posts = @posts.reverse %>
                     <% @posts.each do |post| %>
                             <article class="<%= post.type %>" data-post-id="post_<%= post.id %>">
                                 <div class="post-wrapper clearfix">
@@ -184,7 +185,7 @@
 																			
 																			<% if post.type == "Text" %>
                                         
-                                            <h2><a href="{Permalink}"><%= post.title %></a></h2>
+                                            <h2><a href="/<%= @user.username %>/post/<%= post.custom_url ? post.custom_url : post.id %>"><%= post.title %></a></h2>
                                          
                                             <div class="body-text"><%= post.post_text %>
                                             </div>
