@@ -122,20 +122,30 @@
                 }
             }
 
+
+						.btn-small {
+							border: none;
+							background-color: #333;
+							padding: 10px;
+							margin-top: 10px;
+							color: white;
+						}
+						.btn-small:hover {
+							color: #333;
+							background-color: #ccc;
+						}
+						
+						
         </style>
     </head>
-    <body data-urlencoded-name="{URLEncodedName}" class="{select:Layout}{block:IndexPage} index-page{/block:IndexPage}{block:PermalinkPage} permalink{/block:PermalinkPage}{block:SearchPage} search-page{block:NoSearchResults} no-results{/block:NoSearchResults}{/block:SearchPage}">
+    <body>
         <section id="page">
             <div class="nav-menu-wrapper {block:IfNotCollapseNavigation}search-only{/block:IfNotCollapseNavigation}">
                
                 <div class="glass"></div>
             </div>
             <div class="nav-menu-bg"></div>
-            <div class="header-wrapper
-                {block:HideTitle}{block:HideDescription}no-title-desc {/block:HideDescription}{/block:HideTitle}
-                {block:HideHeaderImage}no-image {/block:HideHeaderImage}
-                {block:HideAvatar}avatar-hidden{/block:HideAvatar}
-                {block:ShowAvatar}avatar-style-{AvatarShape}{/block:ShowAvatar}">
+            <div class="header-wrapper">
 
                 <header id="header">
 										
@@ -152,13 +162,24 @@
                         <h1><a href="/<%= @user.username %>"><%= @blog['title'] %></a></h1>
                         <% end %>
 												
-												<% if logged_in? %>
-												  <% button_text = "" %>
-													<form action="<%= api_subscriptions_url %>" method="post">
+												<% if logged_in? && current_user.id != @user.id%>
+													
+													<% if @is_following %>
+												  	<% button_text = "Unfollow This Blog" %>
+														<% form_url = api_subscription_url(@subscription) %>
+														<% form_action = "delete" %>
+													<% else %>
+												  	<% button_text = "Follow This Blog" %>
+														<% form_url = api_subscriptions_url %>
+														<% form_action = "post" %>
+													<% end %>
+													<form id="follow-button" action="<%= form_url %>" method="post">
 														<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+														<input id="form-method" type="hidden" name="_method" value="<%= form_action %>">
 				
 														<input type="hidden" name="subscription[subscribee_id]" value="<%= @blog['id'] %>">
-												 <button>Follow This Blog </button>
+									
+<button class="btn-small"><%= button_text %></button>
 												 </form>
 												<% end %>
 												
@@ -179,13 +200,17 @@
                 <div data-page-id="{CurrentPage}">
 									<% @posts = @posts.reverse %>
                     <% @posts.each do |post| %>
+										
+										<% if post.custom_url && post.custom_url.length > 0 %>
+											<% custom_url = (post.custom_url[0] == "/" ? post.custom_url[1..-1] : post.custom_url) %>
+										<% end %>
                             <article class="<%= post.type %>" data-post-id="post_<%= post.id %>">
                                 <div class="post-wrapper clearfix">
                                     <section class="post">
 																			
 																			<% if post.type == "Text" %>
                                         
-                                            <h2><a href="/<%= @user.username %>/post/<%= post.custom_url ? post.custom_url : post.id %>"><%= post.title %></a></h2>
+                                            <h2><a href="/<%= @user.username %>/post/<%= custom_url ? custom_url : post.id %>"><%= post.title %></a></h2>
                                          
                                             <div class="body-text"><%= post.post_text %>
                                             </div>
@@ -208,11 +233,11 @@
 																				
 																				<% end %>
 																				
-                                        <% unless post.title.empty? %> 
- 																			 <h2><a href="{Permalink}"><%= post.title %></a></h2>
+                                        <% if post.title %>  %> 
+ 																			 <h2><a href="/<%= @user.username %>/post/<%= custom_url ? custom_url : post.id %>"><%= post.title %></a></h2>
  																			 <% end %>
                                        
- 																			 <% unless post.post_text.empty? %>
+ 																			 <% if post.post_text %>
                                          <div class="body-text"><%= post.post_text %>
                                          </div>
  																				<% end %>
@@ -392,7 +417,23 @@
 				 	 var md_text = $(this).html();
 					 $(this).html(marked(md_text));
 				 })
+				 
+				 $('#follow-button').submit(function(event) {
+					 debugger
+					 event.preventDefault();
+					 $form = $(event.currentTarget)
+					 $.ajax({
+						 action: $('#form-method').val()
+						 data: $form.serialize(),
+						 url: $form.attr('action'),
+						 success: function() {
+							 alert('done!')
+						 }
+					 })
+				 })
 			 });
+			 
+			 
 			 </script>
     </body>
 </html>

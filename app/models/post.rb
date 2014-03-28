@@ -22,8 +22,20 @@
 class Post < ActiveRecord::Base
 
   validates :user_id, :type, :presence => true
-  
   belongs_to :user
   has_many :pictures, as: :imageable
+  validate :fix_custom_url
+  
+  
+  private
+  
+  def fix_custom_url
+    if self.custom_url && self.custom_url.length > 0
+      if self.custom_url[0] == "/"
+        self.custom_url = self.custom_url[1..-1]
+      end
+    end
+  end
+  
 
 end

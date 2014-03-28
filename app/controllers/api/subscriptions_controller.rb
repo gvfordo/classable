@@ -5,14 +5,19 @@ class Api::SubscriptionsController < ApplicationController
   def create
     @new_subscription = current_user.subscriptions.new(subscription_params)
     if @new_subscription.save
-      render :json => @new_subscription
+      user = @new_subscription.subscribee
+      redirect_to "/#{user.username}"
     else
       render :json => @new_subscription.errors.full_messages
     end
   end
   
   def destroy
+    subscription = current_user.subscriptions.find_by(:subscribee_id => subscription_params[:subscribee_id])
+    user = subscription.subscribee
+    subscription.destroy
     
+    redirect_to "/#{user.username}"
   end
   
   private

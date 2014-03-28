@@ -9,6 +9,7 @@ class BlogsController < ApplicationController
     @blog['meta-title'] = @user.username + "'s HTML Safe Classable Blog Title!"
     @posts = @user.posts
     @posts
+    @is_following = currently_following?
     render 'blogs/default/index', :layout => false
   end
   
@@ -18,7 +19,6 @@ class BlogsController < ApplicationController
     if @posts.length == 0
       @posts = Post.where(:user_id => @user.id, :id => params[:post_title])
     end
-    
     if @posts.length == 0
       render 'blogs/not-found'
     else 
@@ -26,6 +26,7 @@ class BlogsController < ApplicationController
       @blog['id'] = @user.id
       @blog['title'] = @user.username. + "'s Classable Blog!"
       @blog['meta-title'] = @user.username + "'s HTML Safe Classable Blog Title!"
+       @is_following = currently_following?
       render 'blogs/default/index', :layout => false
       end
   
@@ -37,5 +38,17 @@ class BlogsController < ApplicationController
   end
   
   private
+  
+  def currently_following?
+    return false unless logged_in?
+    following = false
+    current_user.subscriptions.each do |sub|
+      if sub.subscribee_id == @user.id
+        following = true
+        @subscription = sub;
+      end
+    end
+    following
+  end
   
 end
