@@ -16,6 +16,10 @@ class Api::UsersController < ApplicationController
     render :json => @user
   end
   
+  def cohort
+    render 'cohort'
+  end
+  
   private
   
   def require_owner

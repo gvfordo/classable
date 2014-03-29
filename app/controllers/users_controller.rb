@@ -49,6 +49,11 @@ class UsersController < ApplicationController
     end
   end
   
+  
+  def cohort
+    
+    render 'cohort', :layout => false
+  end
   private
   
   def user_info
