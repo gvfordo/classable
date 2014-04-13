@@ -5,11 +5,12 @@
 	<%} else {%>
 	New Video Post.
 	<%}%></div>
+	<p>This form takes a YouTube url,  like the one below.  You can find these on any YouTube video by clicking the "Share" link under the video and copying the URL from there, or just click "Create Post" below to enjoy Lionel Richie's "Dancing On The Ceiling". </p>
 
 	<div id="post-errors"></div>
 	<input type="hidden" name="post[type]" value="Video">
 		
-	<input id="temp" type="text" class="form-control" name="post[media_url]" value="" placeholder="Paste YouTube Link Here: eg.  http://youtu.be/lsl3d0skdjf" />	
+	<input id="temp" type="text" class="form-control" name="post[media_url]" value="<% if (post.get('media_url')){ %><%=post.get('media_url') %><% } else {%>http://youtu.be/OdQDXs75Ulo<% } %>" />	
 	
 	<div class="optional-text" style="display:none">
 		<div class="input-group">
