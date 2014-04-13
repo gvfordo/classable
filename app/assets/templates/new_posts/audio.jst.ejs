@@ -5,11 +5,12 @@
 	<%} else {%>
 	New Audio Post.
 	<%}%></div>
+	<p>This form takes a spotify URI,  like the one below.  You can find these by right clicking any song in spotify and copying the URI, or just click "Create Post" below to jam out to Survivor's "Eye of the Tiger". </p>
 
 	<div id="post-errors"></div>
 	<input type="hidden" name="post[type]" value="Audio">
 		
-	<input id="temp" type="text" class="form-control" name="post[media_url]" value="<% if (post.get('media_url')){ %><%=post.get('media_url') %><% }%>" placeholder="Enter Spotify URI or wait until this works better." />	
+	<input id="temp" type="text" class="form-control" name="post[media_url]" value="<% if (post.get('media_url')){ %><%=post.get('media_url') %><% } else {%>spotify:track:2KH16WveTQWT6KOG9Rg6e2<% } %>"  />	
 	
 	<div class="optional-text" style="display:none">
 		<div class="input-group">

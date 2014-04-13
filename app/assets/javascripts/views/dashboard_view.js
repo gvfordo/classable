@@ -2,6 +2,7 @@ Classable.Views.DashboardView = Backbone.View.extend({
 	
 	initialize: function(options) {
 		this.user = options.user;
+		this.subViews = [];
 	},
 	
 	events: {
@@ -26,6 +27,7 @@ Classable.Views.DashboardView = Backbone.View.extend({
 	
 	showUserFeed: function() {
 		var userFeedView = new Classable.Views.UserFeedView({ collection: Classable.feed });
+		this.subViews.push(userFeedView);
 		this.$('#user-feed').html(userFeedView.render().$el);
 	},
 	
@@ -42,6 +44,7 @@ Classable.Views.DashboardView = Backbone.View.extend({
 	
 	showUserMenu: function() {
 		var userMenuView = new Classable.Views.UserMenuView();
+		this.subViews.push(userMenuView);
 		$('#user-menu-area').html(userMenuView.render().$el);
 	},
 	
@@ -49,6 +52,13 @@ Classable.Views.DashboardView = Backbone.View.extend({
 		view.remove();
 		this.showPostTypes();
 
+	},
+
+	removeChildren: function() {
+		this.subViews.forEach(function(view) {
+			view.removeChildren();
+			view.remove();
+		});
 	}
 	
 	

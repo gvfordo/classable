@@ -2,6 +2,7 @@ Classable.Views.AccountSettingsView = Backbone.View.extend({
 	
 	initialize: function(options) {
 	  this.user = Classable.user;
+	  this.subViews = []
 	},
 	
 	events: {
@@ -20,6 +21,7 @@ Classable.Views.AccountSettingsView = Backbone.View.extend({
 	
 	showUserMenu: function() {
 		var userMenuView = new Classable.Views.UserMenuView();
+		this.subViews.push(userMenuView);
 		$('#user-menu-area').html(userMenuView.render().$el);
 	},
 	
@@ -52,6 +54,12 @@ Classable.Views.AccountSettingsView = Backbone.View.extend({
 			success: function () {
 				Backbone.history.navigate("/", { trigger: true })
 			}
+		})
+	},
+
+	removeChildren: function() {
+		this.subViews.forEach(function(view) {
+			view.remove();
 		})
 	}
 	

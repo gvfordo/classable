@@ -24,6 +24,10 @@ Classable.Views.UserMenuView = Backbone.View.extend({
 	
 	logOut: function() {
 		$('#log-out-form').submit();
+	},
+	
+	removeChildren: function() {
+		
 	}
 
 	

@@ -3,6 +3,7 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 	initialize: function(){
 		this.listenTo(this.collection, "sync add", this.render);
 		this.postViews = {};
+		this.subViews = [];
 		// this.listenTo(this.collection, "add", this.addOne);
 	},
 	
@@ -20,14 +21,15 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 		var that = this;
 		this.collection.forEach(function(post) {
 			that.$el.prepend(that.renderedPostType(post));
-		});		
+		});
+		console.log("rendered feed view");		
 		return this;
 		
 	},
 	
 	editPost: function(event) {
 		event.preventDefault();
-    var that = this;
+    	var that = this;
 		var id = $(event.target).data('id');
 		var post = this.collection.get(id)
 		var editForm = new Classable.Views.NewPostView({
@@ -95,44 +97,57 @@ Classable.Views.UserFeedView = Backbone.View.extend({
 	
 	renderTextPost: function(post) {
 		var showTextView = new Classable.Views.TextPostView({ model: post });
+		this.subViews.push(showTextView);
 		this.postViews[""+post.id+""] = showTextView
 		return showTextView.render().$el;
 	},
 	
 	renderImagePost: function(post) {
 		var showImageView = new Classable.Views.ImagePostView({ model: post });
+		this.subViews.push(showImageView);
 		this.postViews[""+post.id+""] = showImageView
 		return showImageView.render().$el;
 	},
 	
 	renderQuotePost: function(post) {
 		var showQuoteView = new Classable.Views.QuotePostView({ model: post });
+		this.subViews.push(showQuoteView);
 		this.postViews[""+post.id+""] = showQuoteView
 		return showQuoteView.render().$el;
 	},
 	
 	renderLinkPost: function(post) {
 		var showLinkView = new Classable.Views.LinkPostView({ model: post });
+		this.subViews.push(showLinkView);
 		this.postViews[""+post.id+""] = showLinkView
 		return showLinkView.render().$el;
 	},
 	
 	renderChatPost: function(post) {
 		var showChatView = new Classable.Views.ChatPostView({ model: post });
+		this.subViews.push(showChatView);
 		this.postViews[""+post.id+""] = showChatView
 		return showChatView.render().$el;
 	},
 	
 	renderAudioPost: function(post) {
 		var showAudioView = new Classable.Views.AudioPostView({ model: post });
+		this.subViews.push(showAudioView);
 		this.postViews[""+post.id+""] = showAudioView
 		return showAudioView.render().$el;
 	},
 	
 	renderVideoPost: function(post) {
 		var showVideoView = new Classable.Views.VideoPostView({ model: post });
+		this.subViews.push(showVideoView);
 		this.postViews[""+post.id+""] = showVideoView
 		return showVideoView.render().$el;
+	},
+
+	removeChildren: function() {
+		this.subViews.forEach(function(view) {
+			view.remove();
+		})
 	}
 	
 	
